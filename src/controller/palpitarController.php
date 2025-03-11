@@ -60,8 +60,8 @@ if(count($testeStatusJogo2) > 0){
 }
 
 foreach($list as $u){
-    if(isset($_POST["placarC{$u->id_jogadores}"])){
-        if(isset($_POST["placarF{$u->id_jogadores}"])){
+    if($_POST["placarC{$u->id_jogadores}"] != ""){
+        if($_POST["placarF{$u->id_jogadores}"] != ""){
 
             $db = new Database();
 
@@ -73,8 +73,8 @@ foreach($list as $u){
         }
     }
 
-    if(isset($_POST["placarC{$u->id_jogadores}2"])){
-        if(isset($_POST["placarF{$u->id_jogadores}2"])){
+    if($_POST["placarC{$u->id_jogadores}2"] != ""){
+        if($_POST["placarF{$u->id_jogadores}2"] != ""){
 
             $db = new Database();
 

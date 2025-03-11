@@ -89,21 +89,6 @@ foreach($list as $u){
     }
 }
 
-
-
-
-
-
-
-
-
-if(isset($_POST["respostaC"])){
-    if(isset($_POST["respostaF"])){
-
-    }
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +101,7 @@ if(isset($_POST["respostaC"])){
 <body>
     <h1>ADM</h1>
 
-    <form action="../controller/palpiteController.php" method="post">
+    <form action="../controller/palpitarController.php" method="post">
         <table>
             <thead>
                 <th>Nome</th>
@@ -141,11 +126,11 @@ if(isset($_POST["respostaC"])){
         </table>
         <input type="submit" value="Palpitar">
     </form>
-    <form action="#" method="post">
-        <input type="number" name="respostaG" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>">
-        <input type="number" name="respostaI" id="respostaF" placeholder="<?= count($times) > 0 ? $times[1] : "" ?>">
-        <input type="number" name="respostaI" id="respostaC2" placeholder="<?= count($times) > 0 ? $times[2] : "" ?>">
-        <input type="number" name="respostaI" id="respostaF2" placeholder="<?= count($times) > 0 ? $times[3] : "" ?>">
+    <form action="../controller/finalizarRodada.php" method="post">
+        <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>">
+        <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 0 ? $times[1] : "" ?>">
+        <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 0 ? $times[2] : "" ?>">
+        <input type="number" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 0 ? $times[3] : "" ?>">
         <input type="submit" value="Finalizar rodada">
     </form>
 
