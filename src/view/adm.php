@@ -105,6 +105,7 @@ foreach($list as $u){
                 <th>placar da Casa</th>
                 <th>placar Fora</th>
                 <th>pontos</th>
+                <th>dívida</th>
             </thead>
             <tbody>
                 <?php foreach($list as $u){ ?>
@@ -113,6 +114,7 @@ foreach($list as $u){
                     <td> <input type="number" name="placarC<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "value='{$palpitesC[$u->id_jogadores][0]}'". "disabled" : "" ?> > </td>
                         <td> <input type="number" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "value='{$palpitesC[$u->id_jogadores][1]}'". "disabled" : "" ?>> </td>
                         <td><?= $u->pontos ?></td>
+                        <td><?= $u->divida ?></td>
                     </tr>            
                     <tr>
                         <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 0 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "value='{$palpitesF[$u->id_jogadores][0]}'". "disabled" : "" ?>> </td>

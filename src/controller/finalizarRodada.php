@@ -21,11 +21,14 @@ if($_POST["respostaC"] != ""){
                 } else{
                     //acertou quem ganha
                     $db->update(
-                        "UPDATE jogadores SET pontos = pontos + 1 WHERE id_jogadores = {$p->id_jogador}"
+                        "UPDATE jogadores SET pontos = pontos + 1, divida = divida + 0.5 WHERE id_jogadores = {$p->id_jogador}"
                     );
                 }
             } else{
                 //Errou quem ganha
+                $db->update(
+                    "UPDATE jogadores SET divida = divida + 1 WHERE id_jogadores = {$p->id_jogador}"
+                );
             }
         }
     }
@@ -45,11 +48,14 @@ if($_POST["respostaC2"] != ""){
                 } else{
                     //acertou quem ganha
                     $db->update(
-                        "UPDATE jogadores SET pontos = pontos + 1 WHERE id_jogadores = {$p->id_jogador}"
+                        "UPDATE jogadores SET pontos = pontos + 1, divida = divida + 0.5 WHERE id_jogadores = {$p->id_jogador}"
                     );
                 }
             } else{
                 //Errou quem ganha
+                $db->update(
+                    "UPDATE jogadores SET divida = divida + 1 WHERE id_jogadores = {$p->id_jogador}"
+                );
             }
         }
     }
