@@ -1,4 +1,5 @@
 <?php
+
 require "const.php";
 
 class Database {

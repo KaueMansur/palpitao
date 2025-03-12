@@ -1,9 +1,60 @@
 <?php
 
-if(isset($_POST["respostaC"])){
-    if(isset($_POST["respostaF"])){
+require "../model/palpite.php";
 
+$db = new Database();
+
+
+
+if($_POST["respostaC"] != ""){
+    if($_POST["respostaF"] != ""){
+        $palpite = new Palpite($_POST["respostaC"], $_POST["respostaF"]);
+        $palpiteList = $palpite->getPalpitesJogoX(1);
+
+        foreach($palpiteList as $p){
+            if($p->situacao_da_casa == $palpite->getResultadoDaCasa()){
+                if($p->placar == $palpite->getPlacar()){
+                    //acerto na cabeça
+                    $db->update(
+                        "UPDATE jogadores SET pontos = pontos + 3 WHERE id_jogadores = {$p->id_jogador}"
+                    );
+                } else{
+                    //acertou quem ganha
+                    $db->update(
+                        "UPDATE jogadores SET pontos = pontos + 1 WHERE id_jogadores = {$p->id_jogador}"
+                    );
+                }
+            } else{
+                //Errou quem ganha
+            }
+        }
     }
 }
+if($_POST["respostaC2"] != ""){
+    if($_POST["respostaF2"] != ""){
+        $palpite = new Palpite($_POST["respostaC2"], $_POST["respostaF2"]);
+        $palpiteList = $palpite->getPalpitesJogoX(2);
+
+        foreach($palpiteList as $p){
+            if($p->situacao_da_casa == $palpite->getResultadoDaCasa()){
+                if($p->placar == $palpite->getPlacar()){
+                    //acerto na cabeça
+                    $db->update(
+                        "UPDATE jogadores SET pontos = pontos + 3 WHERE id_jogadores = {$p->id_jogador}"
+                    );
+                } else{
+                    //acertou quem ganha
+                    $db->update(
+                        "UPDATE jogadores SET pontos = pontos + 1 WHERE id_jogadores = {$p->id_jogador}"
+                    );
+                }
+            } else{
+                //Errou quem ganha
+            }
+        }
+    }
+}
+
+header("Refresh: 0; URL = ../view/adm.php");
 
 ?>

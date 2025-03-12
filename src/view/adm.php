@@ -1,33 +1,30 @@
 <?php 
 
-// if(!isset($_SESSION["adm"])){
-    // header("Refresh: 0; URL = ../../index.php");
-// }
-
-// session_reset();
-// require "../model/palpite.php";
+// require "../model/database.php";
 
 require "../model/jogador.php";
+
+// require "../model/palpite.php";
 
 // require "../model/rodada.php";
 
 $jogador = new Jogador();
 
-// $db = new Database();
-
 $db = new Database();
+
+// $db = new Database();
 
 $list = $jogador->getAllUsers();
 
 $testeStatusJogo1 = $db->select("SELECT time_da_casa, time_de_fora FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 1");
 $testeStatusJogo2 = $db->select("SELECT time_da_casa, time_de_fora FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 2");
-$id_jogo1 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 1");
-$id_jogo2 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 2");
+$idJogo1 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 1");
+$idJogo2 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 2");
 
-$jogos_da_rodada = [];
+$jogosDaRodada = [];
 
-if($id_jogo1 != null){
-    array_push($jogos_da_rodada, $id_jogo1[0]->id_rodadas, $id_jogo2[0]->id_rodadas);
+if($idJogo1 != null){
+    array_push($jogosDaRodada, $idJogo1[0]->id_rodadas, $idJogo2[0]->id_rodadas);
 
 }
 
@@ -64,7 +61,7 @@ foreach($list as $u){
 
     foreach($pList as $p){
 
-        if($p->id_jogador == $u->id_jogadores && $p->id_jogo_da_rodada == $id_jogo1[0]->id_rodadas){
+        if($p->id_jogador == $u->id_jogadores && $p->id_jogo_da_rodada == $idJogo1[0]->id_rodadas){
 
 
 
@@ -77,7 +74,7 @@ foreach($list as $u){
     }
 
     foreach($pList as $p){
-        if($p->id_jogador == $u->id_jogadores && $p->id_jogo_da_rodada == $id_jogo2[0]->id_rodadas){
+        if($p->id_jogador == $u->id_jogadores && $p->id_jogo_da_rodada == $idJogo2[0]->id_rodadas){
             
             // $jogo2 = [$p->placar[0], $p->placar[4]];
             // array_push($palpites, $p->id_jogador = [$jogo2]);

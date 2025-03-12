@@ -1,5 +1,7 @@
 <?php
 
+require "database.php";
+
 class Palpite{
     private $id;
     private $numeroDeGolsDaCasa;
@@ -26,7 +28,34 @@ class Palpite{
     public function getAllPalpites(){
         $db = new Database();
 
-        return $palpites = $db->select("SELECT * FROM palpites");
+        return $db->select("SELECT * FROM palpites");
+    }
+
+    public function getPalpitesJogoX($x){
+        $db = new Database();
+
+        $list = $this->getAllPalpites();
+
+        $jogoDaRodada = [];
+
+        $idJogo1 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 1");
+        $idJogo2 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 2");
+
+        if($x == 1){
+            foreach($list as $p){
+                if($p->id_jogo_da_rodada == $idJogo1[0]->id_rodadas){
+                    array_push($jogoDaRodada, $p);
+                }
+            }
+        } else{
+            foreach($list as $p){
+                if($p->id_jogo_da_rodada == $idJogo2[0]->id_rodadas){
+                    array_push($jogoDaRodada, $p);
+                }
+            }
+        }
+
+        return $jogoDaRodada;
     }
 
     public function converterPlacar($placar){

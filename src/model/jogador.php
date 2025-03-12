@@ -1,7 +1,7 @@
 <?php
 
+// require "database.php";
 require "palpite.php";
-require "database.php";
 
 class Jogador{
     private $id;
