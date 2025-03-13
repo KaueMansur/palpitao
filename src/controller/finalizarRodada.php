@@ -4,8 +4,6 @@ require "../model/palpite.php";
 
 $db = new Database();
 
-
-
 if($_POST["respostaC"] != ""){
     if($_POST["respostaF"] != ""){
         $palpite = new Palpite($_POST["respostaC"], $_POST["respostaF"]);
@@ -41,7 +39,7 @@ if($_POST["respostaC2"] != ""){
         foreach($palpiteList as $p){
             if($p->situacao_da_casa == $palpite->getResultadoDaCasa()){
                 if($p->placar == $palpite->getPlacar()){
-                    //acerto na cabeça
+                    //acertou na cabeça
                     $db->update(
                         "UPDATE jogadores SET pontos = pontos + 3 WHERE id_jogadores = {$p->id_jogador}"
                     );
@@ -60,6 +58,10 @@ if($_POST["respostaC2"] != ""){
         }
     }
 }
+
+$db->update(
+    "UPDATE jogos_da_rodada SET status = 'Encerrada'"
+);
 
 header("Refresh: 0; URL = ../view/adm.php");
 

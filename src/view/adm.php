@@ -57,6 +57,8 @@ $pList = $palpite->getAllPalpites();
 $palpitesC = [];
 $palpitesF = [];
 
+if(isset($testeStatusJogo1[0])){
+
 foreach($list as $u){
 
     foreach($pList as $p){
@@ -84,6 +86,7 @@ foreach($list as $u){
             // var_dump($p->placar[4]);
         }
     }
+}
 }
 
 ?>
