@@ -24,8 +24,10 @@ $idJogo2 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'e
 $jogosDaRodada = [];
 
 if($idJogo1 != null){
-    array_push($jogosDaRodada, $idJogo1[0]->id_rodadas, $idJogo2[0]->id_rodadas);
-
+    array_push($jogosDaRodada, $idJogo1[0]->id_rodadas);
+    if($idJogo2 != null){
+        array_push($jogosDaRodada, $idJogo2[0]->id_rodadas);
+    }
 }
 
 
@@ -107,6 +109,8 @@ foreach($list as $u){
                 <th>Nome</th>
                 <th>placar da Casa</th>
                 <th>placar Fora</th>
+                <th>placar da Casa 2</th>
+                <th>placar Fora 2</th>
                 <th>pontos</th>
                 <th>dívida</th>
             </thead>
@@ -114,46 +118,47 @@ foreach($list as $u){
                 <?php foreach($list as $u){ ?>
                     <tr>
                         <td><?= $u->nome ?></td>
-                    <td> <input type="number" name="placarC<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "value='{$palpitesC[$u->id_jogadores][0]}'". "disabled" : "" ?> > </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "value='{$palpitesC[$u->id_jogadores][1]}'". "disabled" : "" ?>> </td>
+                    <td> <input type="number" name="placarC<?= $u->id_jogadores?>" <?= count($times) > 0 ? "placeholder={$times[0]}" : "disabled" ?> <?= isset($palpitesC[$u->id_jogadores][0]) ? "value='{$palpitesC[$u->id_jogadores][0]}'". "disabled" : "" ?>> </td>
+                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>" <?= count($times) > 1 ? "placeholder={$times[1]}" : "disabled" ?> <?= isset($palpitesC[$u->id_jogadores][1]) ? "value='{$palpitesC[$u->id_jogadores][1]}'". "disabled" : "" ?>> </td>
+                        <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" <?= count($times) > 2 ? "placeholder={$times[2]}" : "disabled" ?> <?= isset($palpitesF[$u->id_jogadores][0]) ? "value='{$palpitesF[$u->id_jogadores][0]}'". "disabled" : "" ?>> </td>
+                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" <?= count($times) > 3 ? "placeholder={$times[3]}" : "disabled" ?> <?= isset($palpitesF[$u->id_jogadores][1]) ? "value='{$palpitesF[$u->id_jogadores][1]}'". "disabled" : "" ?>> </td>
                         <td><?= $u->pontos ?></td>
                         <td><?= $u->divida ?></td>
                     </tr>            
-                    <tr>
-                        <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 0 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "value='{$palpitesF[$u->id_jogadores][0]}'". "disabled" : "" ?>> </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 0 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "value='{$palpitesF[$u->id_jogadores][1]}'". "disabled" : "" ?>> </td>
-                    </tr>            
+                    
+                                
                 <?php } ?>
             </tbody>
         </table>
         <input type="submit" value="Palpitar">
     </form>
     <form action="../controller/finalizarRodada.php" method="post">
-        <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>">
-        <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 0 ? $times[1] : "" ?>">
-        <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 0 ? $times[2] : "" ?>">
-        <input type="number" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 0 ? $times[3] : "" ?>">
+        <input type="number" name="respostaC" id="respostaC" <?= count($times) > 0 ? "placeholder={$times[0]}" : "disabled" ?>>
+        <input type="number" name="respostaF" id="respostaF" <?= count($times) > 1 ? "placeholder={$times[1]}" : "disabled" ?>>
+        <input type="number" name="respostaC2" id="respostaC2" <?= count($times) > 2 ? "placeholder={$times[2]}" : "disabled" ?>>
+        <input type="number" name="respostaF2" id="respostaF2" <?= count($times) > 3 ? "placeholder={$times[3]}" : "disabled" ?>>
         <input type="submit" value="Finalizar rodada">
     </form>
 
     <form action="../controller/rodadaController.php" method="post">
         <div>
             <label for="timeDaCasa">Time da casa:</label>
-            <input type="text" id="timeDaCasa" name="timeDaCasa" value="<?= count($times) > 0 ? $times[0] : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
+            <input type="text" id="timeDaCasa" name="timeDaCasa" <?= count($times) > 0 ? "disabled value={$times[0]}" : "" ?>>
         </div>
         <div>
             <label for="timeDeFora">Time de fora:</label>
-            <input type="text" id="timeDeFora" name="timeDeFora" value="<?= count($times) > 0 ? $times[1] : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
+            <input type="text" id="timeDeFora" name="timeDeFora" <?= count($times) > 1 ? "disabled value={$times[1]}" : "" ?>>
         </div>
         <div>
             <label for="timeDaCasa2">Time da casa:</label>
-            <input type="text" id="timeDaCasa2" name="timeDaCasa2" value="<?= count($times) > 0 ? $times[2] : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
+            <input type="text" id="timeDaCasa2" name="timeDaCasa2" value="<?= count($times) > 0 ? isset($times[2]) ? $times[2] : "" : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
         </div>
         <div>
             <label for="timeDeFora2">Time de fora:</label>
-            <input type="text" id="timeDeFora2" name="timeDeFora2" value="<?= count($times) > 0 ? $times[3] : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
+            <input type="text" id="timeDeFora2" name="timeDeFora2" value="<?= count($times) > 0 ? isset($times[3]) ? $times[3] : "" : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
         </div>
         <input type="submit" value="Iniciar rodada" <?= count($times) > 0 ? "disabled" : "" ?>>
     </form>
+    <script src="../../assets/js/script.js"></script>
 </body>
 </html>
