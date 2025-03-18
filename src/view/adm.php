@@ -78,15 +78,17 @@ foreach($list as $u){
     }
 
     foreach($pList as $p){
-        if($p->id_jogador == $u->id_jogadores && $p->id_jogo_da_rodada == $idJogo2[0]->id_rodadas){
-            
-            // $jogo2 = [$p->placar[0], $p->placar[4]];
-            // array_push($palpites, $p->id_jogador = [$jogo2]);
-            
-            $palpitesF[$p->id_jogador] = [$p->placar[0], $p->placar[4]];
-            // var_dump($p->placar[0]);
-            // var_dump($p->placar[4]);
-        }
+
+            if($p->id_jogador == $u->id_jogadores && $p->id_jogo_da_rodada == $idJogo2[0]->id_rodadas){
+                
+                // $jogo2 = [$p->placar[0], $p->placar[4]];
+                // array_push($palpites, $p->id_jogador = [$jogo2]);
+                
+                $palpitesF[$p->id_jogador] = [$p->placar[0], $p->placar[4]];
+                // var_dump($p->placar[0]);
+                // var_dump($p->placar[4]);
+            }
+        
     }
 }
 }
@@ -118,10 +120,10 @@ foreach($list as $u){
                 <?php foreach($list as $u){ ?>
                     <tr>
                         <td><?= $u->nome ?></td>
-                    <td> <input type="number" name="placarC<?= $u->id_jogadores?>" <?= count($times) > 0 ? "placeholder={$times[0]}" : "disabled" ?> <?= isset($palpitesC[$u->id_jogadores][0]) ? "value='{$palpitesC[$u->id_jogadores][0]}'". "disabled" : "" ?>> </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>" <?= count($times) > 1 ? "placeholder={$times[1]}" : "disabled" ?> <?= isset($palpitesC[$u->id_jogadores][1]) ? "value='{$palpitesC[$u->id_jogadores][1]}'". "disabled" : "" ?>> </td>
-                        <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" <?= count($times) > 2 ? "placeholder={$times[2]}" : "disabled" ?> <?= isset($palpitesF[$u->id_jogadores][0]) ? "value='{$palpitesF[$u->id_jogadores][0]}'". "disabled" : "" ?>> </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" <?= count($times) > 3 ? "placeholder={$times[3]}" : "disabled" ?> <?= isset($palpitesF[$u->id_jogadores][1]) ? "value='{$palpitesF[$u->id_jogadores][1]}'". "disabled" : "" ?>> </td>
+                    <td> <input type="number" name="placarC<?= $u->id_jogadores?>" <?= count($times) > 0 ? "placeholder={$times[0]}" : "disabled" ?> <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>> </td>
+                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>" <?= count($times) > 1 ? "placeholder={$times[1]}" : "disabled" ?> <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>> </td>
+                        <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" <?= count($times) > 2 ? "placeholder={$times[2]}" : "disabled" ?> <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>> </td>
+                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" <?= count($times) > 3 ? "placeholder={$times[3]}" : "disabled" ?> <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> </td>
                         <td><?= $u->pontos ?></td>
                         <td><?= $u->divida ?></td>
                     </tr>            
