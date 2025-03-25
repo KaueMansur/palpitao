@@ -12,11 +12,17 @@ class Rodada{
     private $timeQueJogaFora;
     private $resultadoDoJogo;
 
-    public function __construct($timeQueJogaEmCasa, $timeQueJogaFora)
+    public function __construct($timeQueJogaEmCasa = 0, $timeQueJogaFora = 0)
     {
         $this->timeQueJogaEmCasa = $timeQueJogaEmCasa;
         $this->timeQueJogaFora = $timeQueJogaFora;
 
+    }
+
+    public function getRodadasAtivas(){
+        $db = new Database();
+
+        return $db->select("SELECT * FROM rodadas");
     }
 
     public function getId(){

@@ -10,28 +10,23 @@ $jogadorList = $jogador->getAllUsers();
 
 $palpites = new Palpite();
 
-$rodadas = $db->select("SELECT * FROM rodadas WHERE status = 'em andamento'");
+$rodada = new Rodada();
 
-$palpitesList = $palpites->getAllPalpites();
+
+
+
 
 $numeroDeJogos = $db->select("SELECT count(*) FROM jogos_da_rodada WHERE status = 'em andamento'");
 
 foreach($jogadorList as $j){
-    foreach($palpitesList as $p){
-        if($j->id_jogadores == $p->id_jogador){
-            //postou pelo menos 1 palpite
-            $numeroDePalpites = $db->select("SELECT COUNT(*) FROM palpites WHERE id_jogador = {$j->id_jogadores} && status = 'em andamento'");
 
-            if($numeroDePalpites < $numeroDeJogos){
-                //Não postou todos os palpites
-                
-            } else{
-                //Postou todos os palpites
-            }
-        } else{
-            //Não postou palpites
-        }
+    $numeroDePalpites = $db->select("SELECT COUNT(*) FROM  palpites WHERE id_jogador = '{$j->id_jogadores}', id_jogo_da_rodada = {$palpites->getPalpitesJogoX(1)}");
+
+    if($numeroDePalpites < $numeroDeJogos){
+        //Não postou todos os palpites
+
     }
+
 }
 
 if($_POST["respostaC"] != ""){
