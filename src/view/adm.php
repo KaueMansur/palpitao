@@ -76,6 +76,7 @@ foreach($list as $u){
             $palpitesC[$p->id_jogador] = [$p->placar[0], $p->placar[4]];
         }
     }
+    if(isset($testeStatusJogo2[0])){
 
     foreach($pList as $p){
 
@@ -88,7 +89,7 @@ foreach($list as $u){
                 // var_dump($p->placar[0]);
                 // var_dump($p->placar[4]);
             }
-        
+        }
     }
 }
 }
@@ -126,9 +127,7 @@ foreach($list as $u){
                         <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" <?= count($times) > 3 ? "placeholder={$times[3]}" : "disabled" ?> <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> </td>
                         <td><?= $u->pontos ?></td>
                         <td><?= $u->divida ?></td>
-                    </tr>            
-                    
-                                
+                    </tr>
                 <?php } ?>
             </tbody>
         </table>
