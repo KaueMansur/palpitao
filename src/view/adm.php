@@ -133,7 +133,7 @@ foreach($list as $u){
         </table>
         <input type="submit" value="Palpitar">
     </form>
-    <form action="../controller/finalizarRodada.php" method="post">
+    <form action="../controller/finishRodadas.php" method="post">
         <input type="number" name="respostaC" id="respostaC" <?= count($times) > 0 ? "placeholder={$times[0]}" : "disabled" ?>>
         <input type="number" name="respostaF" id="respostaF" <?= count($times) > 1 ? "placeholder={$times[1]}" : "disabled" ?>>
         <input type="number" name="respostaC2" id="respostaC2" <?= count($times) > 2 ? "placeholder={$times[2]}" : "disabled" ?>>

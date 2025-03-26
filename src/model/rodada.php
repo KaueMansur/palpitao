@@ -2,9 +2,9 @@
 
 // require "palpite.php";
 
-require "database.php";
+// require "database.php";
 
-// require "jogador.php";
+require "jogador.php";
 
 class Rodada{
     private $id;
@@ -22,7 +22,7 @@ class Rodada{
     public function getRodadasAtivas(){
         $db = new Database();
 
-        return $db->select("SELECT * FROM rodadas");
+        return $db->select("SELECT * FROM jogos_da_rodada WHERE status = 'em andamento'");
     }
 
     public function getId(){

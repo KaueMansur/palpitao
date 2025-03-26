@@ -1,6 +1,6 @@
 <?php
 
-require "../model/jogador.php";
+require "../model/rodada.php";
 
 $db = new Database();
 
@@ -12,19 +12,23 @@ $palpites = new Palpite();
 
 $rodada = new Rodada();
 
-
-
-
-
-$numeroDeJogos = $db->select("SELECT count(*) FROM jogos_da_rodada WHERE status = 'em andamento'");
+$rodadasAtivas = $rodada->getRodadasAtivas();
 
 foreach($jogadorList as $j){
+    foreach($rodadasAtivas as $r){
 
-    $numeroDePalpites = $db->select("SELECT COUNT(*) FROM  palpites WHERE id_jogador = '{$j->id_jogadores}', id_jogo_da_rodada = {$palpites->getPalpitesJogoX(1)}");
+        $numeroDePalpites = $db->select("SELECT COUNT(*) FROM palpites WHERE id_jogador = {$j->id_jogadores} AND id_jogo_da_rodada = {$r->id_rodadas}");
 
-    if($numeroDePalpites < $numeroDeJogos){
-        //Não postou todos os palpites
-
+        if($numeroDePalpites == 1){
+            var_dump($numeroDePalpites);
+            //Não postou em determinado jogo
+            
+                $db->insert(
+                    "INSERT INTO palpites(placar, situacao_da_casa, id_jogador, time_da_casa, time_de_fora, id_jogo_da_rodada) VALUES ('{$palpites->getPlacar()}', '{$palpites->getResultadoDaCasa()}', '{$j->id_jogadores}', '{$r->time_da_casa}', '{$r->time_de_fora}', '{$r->id_rodadas}')"
+                );
+        } else{
+            //Postou em determinado jogo
+        }
     }
 
 }
@@ -34,7 +38,7 @@ if($_POST["respostaC"] != ""){
         $palpite = new Palpite($_POST["respostaC"], $_POST["respostaF"]);
         $palpiteList = $palpite->getPalpitesJogoX(1);
 
-        if($palpiteList[0]->time_da_casa == "Grêmio" || $palpiteList[0]->time_da_casa == "Inter" && $palpiteList[0]->time_de_fora == "Grêmio" || $palpiteList[0]->time_de_fora == "Inter"){
+        if(($rodadasAtivas[0]->time_da_casa == "Grêmio" || $rodadasAtivas[0]->time_da_casa == "Inter") && ($rodadasAtivas[0]->time_de_fora == "Grêmio" || $rodadasAtivas[0]->time_de_fora == "Inter")){
             //Grenal
             foreach($palpiteList as $p){
                 if($p->situacao_da_casa == $palpite->getResultadoDaCasa()){
@@ -116,6 +120,6 @@ $db->update(
     "UPDATE jogos_da_rodada SET status = 'Encerrada'"
 );
 
-header("Refresh: 0; URL = ../view/adm.php");
+header("Refresh: 0; URL = ../view/adm.php");        
 
 ?>
