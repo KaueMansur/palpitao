@@ -94,6 +94,9 @@ foreach($list as $u){
 }
 }
 
+
+$jogador->definirPosicao();
+
 ?>
 
 <!DOCTYPE html>
@@ -160,6 +163,24 @@ foreach($list as $u){
         </div>
         <input type="submit" value="Iniciar rodada" <?= count($times) > 0 ? "disabled" : "" ?>>
     </form>
+    <table>
+        <thead>
+            <th>Posição</th>
+            <th>Pontos</th>
+            <th>Nome</th>
+            <th>Dívida</th>
+        </thead>
+        <tbody>
+            <?php foreach($list as $u){ ?>
+                <tr>
+                    <td><?= $u->colocacao_atual ?></td>
+                    <td><?= $u->pontos ?></td>
+                    <td><?= $u->nome ?></td>
+                    <td><?= $u->divida ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
     <script src="../../assets/js/script.js"></script>
 </body>
 </html>

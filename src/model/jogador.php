@@ -54,8 +54,30 @@ class Jogador{
         $db = new Database();
 
         return $list = $db->select(
-            "SELECT * FROM jogadores"
+            "SELECT * FROM jogadores ORDER BY pontos DESC, nome ASC"
         );
+    }
+
+    function definirPosicao(){
+        $db = new Database();
+
+        $maiorPontuacao = $db->select(
+            "SELECT MAX(pontos) FROM jogadores"
+        );
+
+        var_dump($maiorPontuacao);
+
+        $contagemPontosDistintos = $db->select(
+            "SELECT COUNT(DISTINCT pontos) FROM jogadores"
+        );
+
+        $db->update(
+            "UPDATE jogadores SET colocacao_atual = 1 WHERE pontos = (SELECT MAX(pontos) FROM jogadores)"
+        );
+        $db->update(
+            "UPDATE jogadores SET colocacao_atual = 99 WHERE pontos < (SELECT MAX(pontos) FROM jogadores)"
+        );
+
     }
 
     // function palpitar($golsDaCasaJogo1, $golsForaJogo1, $golsDaCasaJogo2, $golsForaJogo2){
