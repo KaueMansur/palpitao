@@ -121,6 +121,9 @@ $db->update(
     "UPDATE jogos_da_rodada SET status = 'Encerrada'"
 );
 
+
+$jogador->definirPosicao();
+
 header("Refresh: 0; URL = ../view/adm.php");        
 
 ?>

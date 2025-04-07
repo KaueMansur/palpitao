@@ -60,23 +60,25 @@ class Jogador{
 
     function definirPosicao(){
         $db = new Database();
-
-        $maiorPontuacao = $db->select(
-            "SELECT MAX(pontos) FROM jogadores"
-        );
-
-        var_dump($maiorPontuacao);
-
+        
         $contagemPontosDistintos = $db->select(
             "SELECT COUNT(DISTINCT pontos) FROM jogadores"
         );
-
+        
         $db->update(
             "UPDATE jogadores SET colocacao_atual = 1 WHERE pontos = (SELECT MAX(pontos) FROM jogadores)"
         );
-        $db->update(
-            "UPDATE jogadores SET colocacao_atual = 99 WHERE pontos < (SELECT MAX(pontos) FROM jogadores)"
+        
+        $pontos = $db->select(
+            "SELECT DISTINCT(pontos) FROM jogadores ORDER BY pontos DESC"
         );
+
+        for($i = 1; $i < $contagemPontosDistintos[0]->{"COUNT(DISTINCT pontos)"}; $i++){
+            
+            $db->update(
+                "UPDATE jogadores SET colocacao_atual = ($i + 1) WHERE pontos = {$pontos[$i]->{'pontos'}}"
+            );
+        }
 
     }
 

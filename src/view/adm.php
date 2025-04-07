@@ -95,7 +95,6 @@ foreach($list as $u){
 }
 
 
-$jogador->definirPosicao();
 
 ?>
 
