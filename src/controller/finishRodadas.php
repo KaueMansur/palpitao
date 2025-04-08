@@ -14,25 +14,25 @@ $rodada = new Rodada();
 
 $rodadasAtivas = $rodada->getRodadasAtivas();
 
-// foreach($jogadorList as $j){
-//     foreach($rodadasAtivas as $r){
+foreach($jogadorList as $j){
+    foreach($rodadasAtivas as $r){
 
-//         $numeroDePalpites = $db->select("SELECT COUNT(*) FROM palpites WHERE id_jogador = {$j->id_jogadores} AND id_jogo_da_rodada = {$r->id_rodadas}");
-//         var_dump($numeroDePalpites[0]);
+        $numeroDePalpites = $db->select("SELECT COUNT(*) FROM palpites WHERE id_jogador = {$j->id_jogadores} AND id_jogo_da_rodada = {$r->id_rodadas}");
+        var_dump($numeroDePalpites[0]);
 
-//         if($numeroDePalpites[0]["COUNT(*)"] == "0"){
-//             //Não postou em determinado jogo
-//             $teste = "If funcionando corretamente!";
-//             var_dump($teste);
-//                 $db->insert(
-//                     "INSERT INTO palpites(placar, situacao_da_casa, id_jogador, time_da_casa, time_de_fora, id_jogo_da_rodada) VALUES ('{$palpites->getPlacar()}', '{$palpites->getResultadoDaCasa()}', '{$j->id_jogadores}', '{$r->time_da_casa}', '{$r->time_de_fora}', {$r->id_rodadas})"
-//                 );
-//         } else{
-//             //Postou em determinado jogo
-//         }
-//     }
+        if($numeroDePalpites[0]->{"COUNT(*)"} == "0"){
+            //Não postou em determinado jogo
+            $teste = "If funcionando corretamente!";
+            var_dump($teste);
+                $db->insert(
+                    "INSERT INTO palpites(placar, situacao_da_casa, id_jogador, time_da_casa, time_de_fora, id_jogo_da_rodada) VALUES ('{$palpites->getPlacar()}', '{$palpites->getResultadoDaCasa()}', '{$j->id_jogadores}', '{$r->time_da_casa}', '{$r->time_de_fora}', {$r->id_rodadas})"
+                );
+        } else{
+            //Postou em determinado jogo
+        }
+    }
 
-// }
+}
 
 if($_POST["respostaC"] != ""){
     if($_POST["respostaF"] != ""){
