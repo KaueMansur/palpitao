@@ -146,11 +146,11 @@ foreach($list as $u){
     <form action="../controller/rodadaController.php" method="post">
         <div>
             <label for="timeDaCasa">Time da casa:</label>
-            <input type="text" id="timeDaCasa" name="timeDaCasa" <?= count($times) > 0 ? "disabled value={$times[0]}" : "" ?>>
+            <input type="text" id="timeDaCasa" name="timeDaCasa" value="<?= count($times) > 0 ? "$times[0]" : "" ?>" <?= count($times) > 1 ? "disabled" : "" ?>>
         </div>
         <div>
             <label for="timeDeFora">Time de fora:</label>
-            <input type="text" id="timeDeFora" name="timeDeFora" <?= count($times) > 1 ? "disabled value={$times[1]}" : "" ?>>
+            <input type="text" id="timeDeFora" name="timeDeFora" value="<?= count($times) > 1 ? "$times[1]" : "" ?>" <?= count($times) > 1 ? "disabled" : "" ?>>
         </div>
         <div>
             <label for="timeDaCasa2">Time da casa:</label>
@@ -180,7 +180,7 @@ foreach($list as $u){
                     <td><?= $u->pontos ?></td>
                     <td><?= $u->nome ?></td>
                     <td><?= $u->divida ?></td>
-                    <td><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>"></td>
+                    <td><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></td>
                 </tr>
             <?php } ?>
         </tbody>
