@@ -60,7 +60,15 @@ class Jogador{
 
     function definirPosicao(){
         $db = new Database();
-        
+
+        $jogador = $this->getAllUsers();
+
+        foreach($jogador as $u){
+            $db->update(
+                "UPDATE jogadores SET colocacao_anterior = {$u->colocacao_atual} WHERE id_jogadores = {$u->id_jogadores}"
+            );
+        }
+
         $contagemPontosDistintos = $db->select(
             "SELECT COUNT(DISTINCT pontos) FROM jogadores"
         );
@@ -80,6 +88,29 @@ class Jogador{
             );
         }
 
+    }
+
+    function definirAlteracaoNaPosicao(){
+        $db = new Database();
+
+        $jogador = $this->getAllUsers();
+
+        foreach($jogador as $u){
+            if($u->colocacao_atual < $u->colocacao_anterior){
+                //Subiu de posição
+                $db->update(
+                    "UPDATE jogadores SET reposicionamento = '⬆' WHERE id_jogadores = {$u->id_jogadores}"
+                );
+            } else if($u->colocacao_atual > $u->colocacao_anterior){
+                $db->update(
+                    "UPDATE jogadores SET reposicionamento = '⬇' WHERE id_jogadores = {$u->id_jogadores}"
+                );
+            } else{
+                $db->update(
+                    "UPDATE jogadores SET reposicionamento = '⏹' WHERE id_jogadores = {$u->id_jogadores}"
+                );
+            }
+        }
     }
 
     // function palpitar($golsDaCasaJogo1, $golsForaJogo1, $golsDaCasaJogo2, $golsForaJogo2){

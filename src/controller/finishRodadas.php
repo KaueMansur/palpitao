@@ -124,6 +124,8 @@ $db->update(
 
 $jogador->definirPosicao();
 
+$jogador->definirAlteracaoNaPosicao();
+
 header("Refresh: 0; URL = ../view/adm.php");        
 
 ?>

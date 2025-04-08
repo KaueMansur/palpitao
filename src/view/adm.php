@@ -164,6 +164,7 @@ foreach($list as $u){
     </form>
     <table>
         <thead>
+            <th>Reposicionamento</th>
             <th>Posição</th>
             <th>Pontos</th>
             <th>Nome</th>
@@ -172,6 +173,7 @@ foreach($list as $u){
         <tbody>
             <?php foreach($list as $u){ ?>
                 <tr>
+                    <td><?= $u->reposicionamento ?></td>
                     <td><?= $u->colocacao_atual ?></td>
                     <td><?= $u->pontos ?></td>
                     <td><?= $u->nome ?></td>
