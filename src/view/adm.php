@@ -162,6 +162,7 @@ foreach($list as $u){
         </div>
         <input type="submit" value="Iniciar rodada" <?= count($times) > 0 ? "disabled" : "" ?>>
     </form>
+    <form action="../controller/dividaController.php" method="post">
     <table>
         <thead>
             <th>Reposicionamento</th>
@@ -169,6 +170,7 @@ foreach($list as $u){
             <th>Pontos</th>
             <th>Nome</th>
             <th>Dívida</th>
+            <th>Pagou?</th>
         </thead>
         <tbody>
             <?php foreach($list as $u){ ?>
@@ -178,10 +180,13 @@ foreach($list as $u){
                     <td><?= $u->pontos ?></td>
                     <td><?= $u->nome ?></td>
                     <td><?= $u->divida ?></td>
+                    <td><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>"></td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
+    <input type="submit" value="Atualizar dívidas">
+</form>
     <script src="../../assets/js/script.js"></script>
 </body>
 </html>
