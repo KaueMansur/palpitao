@@ -4,10 +4,6 @@ require "src/model/jogador.php";
 
 require "src/controller/session_on.php";
 
-var_dump($_SESSION["adm"]);
-// session_destroy();
-
-
 if(isset($_POST["nome"])){
     if(isset($_POST["senha"])){
         $jogador = new Jogador($_POST["nome"], sha1($_POST["senha"]));
