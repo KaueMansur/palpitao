@@ -2,11 +2,11 @@
 
 require "src/model/jogador.php";
 
-session_start();
+require "src/controller/session_on.php";
 
-if(isset($_SESSION["jogador"])){
-    header("Refresh: 0; URL = src/view/main.php");
-}
+var_dump($_SESSION["adm"]);
+// session_destroy();
+
 
 if(isset($_POST["nome"])){
     if(isset($_POST["senha"])){
@@ -14,7 +14,7 @@ if(isset($_POST["nome"])){
 
         if($jogador->fazerLogin()){
             
-            if($jogador->getAdm()){
+            if($jogador->getAdm() == 1){
                 $_SESSION["adm"] = $jogador->getObject();
                 header("Refresh: 0; URL = src/view/adm.php");
             } else{

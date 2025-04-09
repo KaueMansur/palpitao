@@ -1,10 +1,7 @@
-<?php 
+<?php
 
-if(!isset($_SESSION["jogador"])){
-    // header("Refresh: 0; URL = ../../index.php");
-}
+require "../controller/session_off.php";
 
-session_reset();
 
 ?>
 
@@ -18,5 +15,6 @@ session_reset();
 </head>
 <body>
     <h1>Teste</h1>
+    <a href="../controller/session_destroy.php">Log out</a>
 </body>
 </html>

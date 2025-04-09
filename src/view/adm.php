@@ -1,18 +1,18 @@
 <?php 
 
-// require "../model/database.php";
+session_start();
+
+var_dump($_SESSION["adm"]);
+
+if(!isset($_SESSION["adm"])){
+    header("Refresh: 0; URL = ../../index.php");
+}
 
 require "../model/jogador.php";
-
-// require "../model/palpite.php";
-
-// require "../model/rodada.php";
 
 $jogador = new Jogador();
 
 $db = new Database();
-
-// $db = new Database();
 
 $list = $jogador->getAllUsers();
 
@@ -187,6 +187,6 @@ foreach($list as $u){
     </table>
     <input type="submit" value="Atualizar dívidas">
 </form>
-    <script src="../../assets/js/script.js"></script>
+<a href="../controller/session_destroy.php">Log out</a>
 </body>
 </html>
