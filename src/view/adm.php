@@ -101,10 +101,11 @@ foreach($list as $u){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>adm</title>
+    <title>Painel de controle</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <h1>ADM</h1>
+<h1> <span style="color: blue;">Painel de </span><span style="color: red;">controle</span></h1>
 
     <form action="../controller/palpitarController.php" method="post">
         <table>

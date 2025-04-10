@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Passion+One:wght@400;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+*{
+    margin: 0;
+    bottom: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --cor-primaria: #EBEAFF;
+    --cor-secundaria: #9694FF;
+    --cor-terciaria: #3D3BF3;
+    --cor-quarta: #FF2929;
+}
+
+html{
+    background-color: var(--cor-primaria);
+}
+
+body#index{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Lobster, sans-serif;
+}
+
+h1{
+    font-size: 3.5em;
+    padding-bottom: 10px;
+}
+
+h2{
+    font-size: 2.5em;
+}
+
+form#login{
+    background-color: var(--cor-secundaria);
+    padding: 30px;
+    border-radius: 20px;
+    height: 70vh;
+    width: 90vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.campos_container{
+    background-color: var(--cor-terciaria);
+    height: 60%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.campos_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.campos_label{
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.campos_campos{
+    width: 80%;
+    font-size: 2em;
+    border-radius: 10px;
+    background-color: var(--cor-quarta);
+    color: #fff;
+    text-align: center;
+    font-family: Lobster, sans-serif;
+}
+
+.login_btn{
+    background-color: var(--cor-quarta);
+    font-size: 1.5em;
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 15px;
+    font-family: Lobster, sans-serif;
+    letter-spacing: 2px;
+    width: 300px;
+
+}

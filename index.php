@@ -31,21 +31,26 @@ if(isset($_POST["nome"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palpitão dupla grenal</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-    <header></header>
+<body id="index">
+    <header>
+        <h1> <span style="color: blue;">Palpitão Du</span><span style="color: red;">pla Grenal</span></h1>
+    </header>
     <main>
-        <form action="#" method="post">
-            <h1>Login</h1>
-            <div>
-                <label for="campo_nome">Nome:</label>
-                <input type="text" name="nome" id="campo_nome">
+        <form action="#" method="post" id="login">
+            <h2>Login</h2>
+            <div class="campos_container">
+                <div class="campos_div">
+                    <label for="campo_nome" class="campos_label">Nome:</label>
+                    <input type="text" name="nome" id="campo_nome" class="campos_campos">
+                </div>
+                <div class="campos_div">
+                    <label for="campo_senha" class="campos_label">Senha:</label>
+                    <input type="password" name="senha" id="campo_senha" class="campos_campos">
+                </div>
             </div>
-            <div>
-                <label for="campo_senha">Senha:</label>
-                <input type="password" name="senha" id="campo_senha">
-            </div>
-            <input type="submit" value="Fazer Login">
+            <input type="submit" value="Fazer Login" class="login_btn">
         </form>
     </main>
     <footer></footer>
