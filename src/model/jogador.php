@@ -113,6 +113,22 @@ class Jogador{
         }
     }
 
+    function definirTitulosDePosicao(){
+        $db = new Database();
+        
+        $db->update(
+            "UPDATE jogadores SET titulo_de_posicao = null"
+        );
+
+        $db->update(
+            "UPDATE jogadores SET titulo_de_posicao = 'Lanterna' WHERE pontos = (SELECT MIN(pontos) FROM jogadores)"
+        );
+
+        $db->update(
+            "UPDATE jogadores SET titulo_de_posicao = 'Líder' WHERE pontos = (SELECT MAX(pontos) FROM jogadores)"
+        );
+    }
+
     // function palpitar($golsDaCasaJogo1, $golsForaJogo1, $golsDaCasaJogo2, $golsForaJogo2){
     //     $palpiteJogo1 = new Palpite($golsDaCasaJogo1, $golsForaJogo1);
     //     $palpiteJogo2 = new Palpite($golsDaCasaJogo2, $golsForaJogo2);

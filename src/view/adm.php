@@ -122,10 +122,10 @@ foreach($list as $u){
                 <?php foreach($list as $u){ ?>
                     <tr>
                         <td><?= $u->nome ?></td>
-                    <td> <input type="number" name="placarC<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[0] : "disabled" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>> </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 1 ? $times[1] : "disabled" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>> </td>
-                        <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 2 ? $times[2] : "disabled" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>> </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 3 ? $times[3] : "disabled" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> </td>
+                    <td> <input type="number" name="placarC<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>> </td>
+                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>> </td>
+                        <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>> </td>
+                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> </td>
                         <td><?= $u->pontos ?></td>
                         <td><?= $u->divida ?></td>
                     </tr>
@@ -135,10 +135,10 @@ foreach($list as $u){
         <input type="submit" value="Palpitar">
     </form>
     <form action="../controller/finishRodadas.php" method="post">
-        <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "disabled" ?>">
-        <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 1 ? $times[1] : "disabled" ?>">
-        <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 2 ? $times[2] : "disabled" ?>">
-        <input type="number" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 3 ? $times[3] : "disabled" ?>">
+        <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= count($times) > 0 ? "" : "disabled" ?>>
+        <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= count($times) > 1 ? "" : "disabled" ?>>
+        <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= count($times) > 2 ? "" : "disabled" ?>>
+        <input type="number" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= count($times) > 3 ? "" : "disabled" ?>>
         <input type="submit" value="Finalizar rodada">
     </form>
 
@@ -168,6 +168,9 @@ foreach($list as $u){
             <th>Posição</th>
             <th>Pontos</th>
             <th>Nome</th>
+            <th>Cem Por Cento</th>
+            <th></th>
+            <th>Pontos na Rodada</th>
             <th>Dívida</th>
             <th>Pagou?</th>
         </thead>
@@ -178,6 +181,9 @@ foreach($list as $u){
                     <td><?= $u->colocacao_atual ?></td>
                     <td><?= $u->pontos ?></td>
                     <td><?= $u->nome ?></td>
+                    <td><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
+                    <td><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?></td>
+                    <td><?= $u->pontos_na_rodada ?></td>
                     <td><?= $u->divida ?></td>
                     <td><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></td>
                 </tr>

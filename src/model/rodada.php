@@ -25,6 +25,14 @@ class Rodada{
         return $db->select("SELECT * FROM jogos_da_rodada WHERE status = 'em andamento'");
     }
 
+    public function contarNumeroDeRodadasAtivas(){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT COUNT(*) FROM jogos_da_rodada WHERE status = 'em andamento'"
+        );
+    }
+
     public function getId(){
         return $this->id;
     }
