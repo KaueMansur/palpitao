@@ -97,7 +97,7 @@ foreach($list as $u){
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="page">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,15 +108,13 @@ foreach($list as $u){
 <h1> <span style="color: blue;">Painel de </span><span style="color: red;">controle</span></h1>
 
     <form action="../controller/palpitarController.php" method="post">
-        <table>
+        <table class="comentario">
             <thead>
                 <th>Nome</th>
-                <th>placar da Casa</th>
-                <th>placar Fora</th>
-                <th>placar da Casa 2</th>
-                <th>placar Fora 2</th>
-                <th>pontos</th>
-                <th>dívida</th>
+                <th>Gols da casa, jogo 1</th>
+                <th>Gols fora, jogo 1</th>
+                <th>Gols da casa, jogo 2</th>
+                <th>Gols fora, jogo 2</th>
             </thead>
             <tbody>
                 <?php foreach($list as $u){ ?>
@@ -126,15 +124,13 @@ foreach($list as $u){
                         <td> <input type="number" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>> </td>
                         <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>> </td>
                         <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> </td>
-                        <td><?= $u->pontos ?></td>
-                        <td><?= $u->divida ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
+            <input type="submit" value="Palpitar" class="comentario">
         </table>
-        <input type="submit" value="Palpitar">
     </form>
-    <form action="../controller/finishRodadas.php" method="post">
+    <form action="../controller/finishRodadas.php" method="post" class="comentario">
         <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= count($times) > 0 ? "" : "disabled" ?>>
         <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= count($times) > 1 ? "" : "disabled" ?>>
         <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= count($times) > 2 ? "" : "disabled" ?>>
@@ -142,27 +138,39 @@ foreach($list as $u){
         <input type="submit" value="Finalizar rodada">
     </form>
 
-    <form action="../controller/rodadaController.php" method="post">
-        <div>
-            <label for="timeDaCasa">Time da casa:</label>
-            <input type="text" id="timeDaCasa" name="timeDaCasa" value="<?= count($times) > 0 ? "$times[0]" : "" ?>" <?= count($times) > 1 ? "disabled" : "" ?>>
+
+
+
+    <form action="../controller/rodadaController.php" method="post" id="iniciar_rodada">
+        <div class="iniciar_rodada_linha">
+            <div class="iniciar_rodada_item">
+                <!-- <label for="timeDaCasa">Time da casa:</label> -->
+                <input type="text" class="iniciar_rodada_campo" id="timeDaCasa" name="timeDaCasa" value="<?= count($times) > 0 ? "$times[0]" : "" ?>" <?= count($times) > 1 ? "disabled" : "" ?> required>
+            </div>
+            <span class="x">X</span>
+            <div class="iniciar_rodada_item">
+                <!-- <label for="timeDeFora">Time de fora:</label> -->
+                <input type="text" class="iniciar_rodada_campo" id="timeDeFora" name="timeDeFora" value="<?= count($times) > 1 ? "$times[1]" : "" ?>" <?= count($times) > 1 ? "disabled" : "" ?> required>
+            </div>
         </div>
-        <div>
-            <label for="timeDeFora">Time de fora:</label>
-            <input type="text" id="timeDeFora" name="timeDeFora" value="<?= count($times) > 1 ? "$times[1]" : "" ?>" <?= count($times) > 1 ? "disabled" : "" ?>>
+        <div class="iniciar_rodada_linha">
+            <div class="iniciar_rodada_item">
+                <!-- <label for="timeDaCasa2">Time da casa:</label> -->
+                <input type="text" class="iniciar_rodada_campo" id="timeDaCasa2" name="timeDaCasa2" value="<?= count($times) > 0 ? isset($times[2]) ? $times[2] : "" : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
+            </div>
+            <span class="x">X</span>
+            <div class="iniciar_rodada_item">
+                <!-- <label for="timeDeFora2">Time de fora:</label> -->
+                <input type="text" class="iniciar_rodada_campo" id="timeDeFora2" name="timeDeFora2" value="<?= count($times) > 0 ? isset($times[3]) ? $times[3] : "" : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
+            </div>
         </div>
-        <div>
-            <label for="timeDaCasa2">Time da casa:</label>
-            <input type="text" id="timeDaCasa2" name="timeDaCasa2" value="<?= count($times) > 0 ? isset($times[2]) ? $times[2] : "" : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
-        </div>
-        <div>
-            <label for="timeDeFora2">Time de fora:</label>
-            <input type="text" id="timeDeFora2" name="timeDeFora2" value="<?= count($times) > 0 ? isset($times[3]) ? $times[3] : "" : "" ?>" <?= count($times) > 0 ? "disabled" : "" ?> >
-        </div>
-        <input type="submit" value="Iniciar rodada" <?= count($times) > 0 ? "disabled" : "" ?>>
+        <input type="submit" value="Iniciar rodada" <?= count($times) > 0 ? "disabled" : "" ?> class="btn">
     </form>
+
+
+
     <form action="../controller/dividaController.php" method="post">
-    <table>
+    <table class="comentario">
         <thead>
             <th>Reposicionamento</th>
             <th>Posição</th>
@@ -190,8 +198,8 @@ foreach($list as $u){
             <?php } ?>
         </tbody>
     </table>
-    <input type="submit" value="Atualizar dívidas">
+    <input type="submit" value="Atualizar dívidas" class="comentario">
 </form>
-<a href="../controller/session_destroy.php">Log out</a>
+<a href="../controller/session_destroy.php" id="logout">Log out</a>
 </body>
 </html>

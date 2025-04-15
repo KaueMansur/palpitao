@@ -50,7 +50,7 @@ if(isset($_POST["nome"])){
                     <input type="password" name="senha" id="campo_senha" class="campos_campos">
                 </div>
             </div>
-            <input type="submit" value="Fazer Login" class="login_btn">
+            <input type="submit" value="Fazer Login" class="btn">
         </form>
     </main>
     <footer></footer>
