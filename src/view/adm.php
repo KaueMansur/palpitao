@@ -107,14 +107,16 @@ foreach($list as $u){
 <body>
 <h1> <span style="color: blue;">Painel de </span><span style="color: red;">controle</span></h1>
 
-    <form action="../controller/palpitarController.php" method="post">
-        <table class="comentario">
+    <form action="../controller/palpitarController.php" method="post" id="palpites_form" class="comentario">
+        <table>
             <thead>
                 <th>Nome</th>
                 <th>Gols da casa, jogo 1</th>
                 <th>Gols fora, jogo 1</th>
+                <?php if(count($times) > 2){ ?>
                 <th>Gols da casa, jogo 2</th>
                 <th>Gols fora, jogo 2</th>
+                <?php } ?>
             </thead>
             <tbody>
                 <?php foreach($list as $u){ ?>
@@ -122,26 +124,58 @@ foreach($list as $u){
                         <td><?= $u->nome ?></td>
                     <td> <input type="number" name="placarC<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>> </td>
                         <td> <input type="number" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>> </td>
+                        <?php if(count($times) > 2){ ?>
                         <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>> </td>
                         <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> </td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
             </tbody>
-            <input type="submit" value="Palpitar" class="comentario">
+            <input type="submit" value="Palpitar">
         </table>
     </form>
-    <form action="../controller/finishRodadas.php" method="post" class="comentario">
+    <form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="comentario">
         <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= count($times) > 0 ? "" : "disabled" ?>>
         <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= count($times) > 1 ? "" : "disabled" ?>>
+        <?php if(count($times) > 2){ ?>
         <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= count($times) > 2 ? "" : "disabled" ?>>
         <input type="number" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= count($times) > 3 ? "" : "disabled" ?>>
+        <?php } ?>
         <input type="submit" value="Finalizar rodada">
     </form>
 
 
 
 
-    <form action="../controller/rodadaController.php" method="post" id="iniciar_rodada">
+    <form action="../controller/dividaController.php" method="post" id="tabela_form">
+    <table id="tabela">
+        <thead id="cabecalho_tabela">
+            <th class="titulo_tabela">Reposicionamento</th>
+            <th class="titulo_tabela">Posição</th>
+            <th class="titulo_tabela">Pontos</th>
+            <th class="titulo_tabela">Nome</th>
+            <th class="titulo_tabela">Pontos na Rodada</th>
+            <th class="titulo_tabela">Dívida</th>
+            <th class="titulo_tabela">Pagou?</th>
+        </thead>
+        <tbody id="corpo_tabela">
+            <?php foreach($list as $u){ ?>
+                <tr class="linha_tabela">
+                    <td class="item_tabela"><?= $u->reposicionamento ?></td>
+                    <td class="item_tabela"><?= $u->colocacao_atual ?></td>
+                    <td class="item_tabela"><?= $u->pontos ?></td>
+                    <td class="item_tabela"><?= $u->nome ?><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
+                    <td class="item_tabela"><?= $u->pontos_na_rodada ?></td>
+                    <td class="item_tabela"><?= $u->divida ?></td>
+                    <td class="item_tabela"><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <input type="submit" value="Atualizar dívidas">
+</form>
+<!-- id="iniciar_rodada_form" -->
+<form action="../controller/rodadaController.php" method="post"  class="comentario">
         <div class="iniciar_rodada_linha">
             <div class="iniciar_rodada_item">
                 <!-- <label for="timeDaCasa">Time da casa:</label> -->
@@ -167,39 +201,7 @@ foreach($list as $u){
         <input type="submit" value="Iniciar rodada" <?= count($times) > 0 ? "disabled" : "" ?> class="btn">
     </form>
 
-
-
-    <form action="../controller/dividaController.php" method="post">
-    <table class="comentario">
-        <thead>
-            <th>Reposicionamento</th>
-            <th>Posição</th>
-            <th>Pontos</th>
-            <th>Nome</th>
-            <th>Cem Por Cento</th>
-            <th></th>
-            <th>Pontos na Rodada</th>
-            <th>Dívida</th>
-            <th>Pagou?</th>
-        </thead>
-        <tbody>
-            <?php foreach($list as $u){ ?>
-                <tr>
-                    <td><?= $u->reposicionamento ?></td>
-                    <td><?= $u->colocacao_atual ?></td>
-                    <td><?= $u->pontos ?></td>
-                    <td><?= $u->nome ?></td>
-                    <td><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
-                    <td><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?></td>
-                    <td><?= $u->pontos_na_rodada ?></td>
-                    <td><?= $u->divida ?></td>
-                    <td><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-    <input type="submit" value="Atualizar dívidas" class="comentario">
-</form>
 <a href="../controller/session_destroy.php" id="logout">Log out</a>
+<script src="../../assets/js/script.js"></script>
 </body>
 </html>

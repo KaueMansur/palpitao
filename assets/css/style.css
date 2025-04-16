@@ -129,7 +129,7 @@ form#login{
     cursor: pointer;
 }
 
-#iniciar_rodada{
+#iniciar_rodada_form{
     background-color: var(--cor-secundaria);
     border-radius: 20px;
     padding: 20px;
@@ -173,4 +173,76 @@ form#login{
     font-size: 3em;
     font-family: sans-serif;
     font-weight: bold;
+}
+
+#tabela_form{
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#tabela{
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 80vw;
+    border: 2px solid #000;
+}
+
+.titulo_tabela:nth-child(odd){
+    background-color: #f00;
+}
+
+.titulo_tabela:nth-child(even){
+    background-color: #00f;
+}
+
+.titulo_tabela{
+    outline: 1px solid #000;
+    font-size: 1.6em;
+    padding: 10px;
+}
+
+.linha_tabela{
+    height: 50px;
+    outline: 1px solid #000;
+}
+
+.linha_tabela:nth-child(odd){
+    background-color: var(--cor-terciaria);
+}
+
+.linha_tabela:nth-child(even){
+    background-color: var(--cor-quarta);
+}
+
+.item_tabela{
+    font-size: 1.3em;
+    text-align: center;
+}
+
+input[type=checkbox]::before{
+    content: "";
+    display: inline-block;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    outline: 1px solid #000;
+    background-color: #fff;
+}
+
+input[type=checkbox]:checked::after{
+    content: "";
+    display: inline-block;
+    border-radius: 5px;
+    width: 5px;
+    height: 20px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: relative;
+    
+    outline: 1px solid #000;
+    background-color: #00f;
 }
