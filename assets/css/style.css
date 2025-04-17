@@ -180,6 +180,9 @@ form#login{
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    background-color: var(--cor-secundaria);
 }
 
 #tabela{
@@ -222,27 +225,42 @@ form#login{
     text-align: center;
 }
 
+input[type="checkbox"]{
+    position: relative;
+    bottom: 10px;
+}
+
+
 input[type=checkbox]::before{
     content: "";
     display: inline-block;
     border-radius: 5px;
     width: 30px;
     height: 30px;
-    outline: 1px solid #000;
+    outline: 1px solid #252121;
     background-color: #fff;
+    position: absolute;
 }
 
-input[type=checkbox]:checked::after{
+input[type=checkbox]:checked:before{
+    background-color: #0f0;
+}
+
+input[type="checkbox"]:disabled::before{
+    background-color: rgb(22, 87, 22);
+}
+
+input[type=checkbox]:checked:after{
     content: "";
-    display: inline-block;
-    border-radius: 5px;
-    width: 5px;
-    height: 20px;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    position: relative;
-    
-    outline: 1px solid #000;
-    background-color: #00f;
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 8px;
+  left: 12px;
 }
