@@ -36,6 +36,15 @@ h1{
     margin-bottom: 40px;
 }
 
+.titulo_forms{
+    color: var(--cor-quarta);
+    font-size: 4em;
+    text-decoration: underline;
+    letter-spacing: 10px;
+    margin: 0;
+    text-shadow: #000 1px 1px 1px;
+}
+
 h2{
     font-size: 2.5em;
 }
@@ -158,6 +167,8 @@ form#login{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    gap: 50px;
 }
 
 .iniciar_rodada_campo{
@@ -175,7 +186,7 @@ form#login{
     font-weight: bold;
 }
 
-#tabela_form{
+.forms{
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -183,9 +194,10 @@ form#login{
     align-items: center;
     gap: 50px;
     background-color: var(--cor-secundaria);
+    width: 85vw;
 }
 
-#tabela{
+#tabela, .tabela{
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
@@ -252,15 +264,29 @@ input[type="checkbox"]:disabled::before{
 
 input[type=checkbox]:checked:after{
     content: "";
-  display: block;
-  width: 5px;
-  height: 10px;
-  border: solid #000;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  position: absolute;
-  top: 8px;
-  left: 12px;
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 8px;
+    left: 12px;
+}
+
+.campo_palpite{
+    font-size: 0.8em;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    transform: translateY(-15.5px);
+    text-align: center;
+    background-color: #fff;
+}
+
+.campo_palpite[disabled]{
+    background-color: #0f0;
 }

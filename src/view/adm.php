@@ -97,14 +97,14 @@ foreach($list as $u){
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br" class="page">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de controle</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
-<body>
+<body class="page">
 <h1> <span style="color: blue;">Painel de </span><span style="color: red;">controle</span></h1>
 
     
@@ -112,8 +112,9 @@ foreach($list as $u){
 
 
 
-    <form action="../controller/dividaController.php" method="post" id="tabela_form">
-    <table id="tabela">
+    <form action="../controller/dividaController.php" method="post" id="tabela_form" class="forms">
+        <h1 class="titulo_forms">Tabela</h1>
+    <table id="tabela" class="tabela">
         <thead id="cabecalho_tabela">
             <th class="titulo_tabela">Reposicionamento</th>
             <th class="titulo_tabela">Posição</th>
@@ -140,49 +141,61 @@ foreach($list as $u){
     <input type="submit" value="Atualizar dívidas" class="btn">
 </form>
 
-
-<form action="../controller/palpitarController.php" method="post" id="palpites_form">
-        <table>
-            <thead>
-                <th>Nome</th>
-                <th>Gols da casa, jogo 1</th>
-                <th>Gols fora, jogo 1</th>
+<?php if(count($times) > 0){ ?>
+<form action="../controller/palpitarController.php" method="post" id="palpites_form" class="forms">
+    <h1 class="titulo_forms">Palpites</h1>
+        <table class="tabela" id="tabela_palpites">
+            <thead class="cabecalho_tabela">
+                <th class="titulo_tabela">Nome</th>
+                <th class="titulo_tabela">Jogo 1</th>
                 <?php if(count($times) > 2){ ?>
-                <th>Gols da casa, jogo 2</th>
-                <th>Gols fora, jogo 2</th>
+                <th class="titulo_tabela">Jogo 2</th>
                 <?php } ?>
             </thead>
-            <tbody>
+            <tbody class="corpo_tabela">
                 <?php foreach($list as $u){ ?>
-                    <tr>
-                        <td><?= $u->nome ?></td>
-                    <td> <input type="number" name="placarC<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>> </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>> </td>
+                    <tr class="linha_tabela">
+                        <td class="item_tabela"><?= $u->nome ?></td>
+                        <td class="item_tabela">
+                            <input type="number" id="placarC<?= $u->id_jogadores?>" class="campo_palpite" name="placarC<?= $u->id_jogadores?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>>
+                            <span class="x">x</span>
+                            <input type="number" id="placarF<?= $u->id_jogadores?>" class="campo_palpite" name="placarF<?= $u->id_jogadores?>" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>>
+                        </td>
                         <?php if(count($times) > 2){ ?>
-                        <td> <input type="number" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>> </td>
-                        <td> <input type="number" name="placarF<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> </td>
+
+                        <td class="item_tabela"> 
+                            <input type="number" id="placarC<?= $u->id_jogadores?>" class="campo_palpite" name="placarC<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>>
+                            <span class="x">x</span> 
+                            <input type="number" id="placarF<?= $u->id_jogadores?>" class="campo_palpite" name="placarF<?= $u->id_jogadores?>2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>> 
+                        </td>
+
                         <?php } ?>
                     </tr>
                 <?php } ?>
             </tbody>
-            <input type="submit" value="Palpitar">
         </table>
+        <input type="submit" value="Palpitar" class="btn">
     </form>
+
     
 
 
 
-<form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="comentario">
+<form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="forms">
+    
         <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= count($times) > 0 ? "" : "disabled" ?>>
         <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= count($times) > 1 ? "" : "disabled" ?>>
         <?php if(count($times) > 2){ ?>
         <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= count($times) > 2 ? "" : "disabled" ?>>
         <input type="number" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= count($times) > 3 ? "" : "disabled" ?>>
         <?php } ?>
-        <input type="submit" value="Finalizar rodada">
+        <input type="submit" value="Finalizar rodada" class="btn">
     </form>
-<!-- id="iniciar_rodada_form" -->
-<form action="../controller/rodadaController.php" method="post"  class="comentario">
+
+<?php } else{?>
+
+
+<form action="../controller/rodadaController.php" method="post" id="iniciar_rodada_form">
         <div class="iniciar_rodada_linha">
             <div class="iniciar_rodada_item">
                 <!-- <label for="timeDaCasa">Time da casa:</label> -->
@@ -207,6 +220,8 @@ foreach($list as $u){
         </div>
         <input type="submit" value="Iniciar rodada" <?= count($times) > 0 ? "disabled" : "" ?> class="btn">
     </form>
+
+<?php }?>
 
 <a href="../controller/session_destroy.php" id="logout">Log out</a>
 <script src="../../assets/js/script.js"></script>
