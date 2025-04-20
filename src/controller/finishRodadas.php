@@ -22,7 +22,7 @@ foreach($jogadorList as $j){
     foreach($rodadasAtivas as $r){
 
         $numeroDePalpites = $db->select("SELECT COUNT(*) FROM palpites WHERE id_jogador = {$j->id_jogadores} AND id_jogo_da_rodada = {$r->id_rodadas}");
-        var_dump($numeroDePalpites[0]);
+        // var_dump($numeroDePalpites[0]);
 
         if($numeroDePalpites[0]->{"COUNT(*)"} == "0"){
             //Não postou em determinado jogo
@@ -115,7 +115,7 @@ if($_POST["respostaC"] != ""){
 
     }
 }
-if($_POST["respostaC2"] != ""){
+if(isset($_POST["respostaC2"])){
     if($_POST["respostaF2"] != ""){
         $palpite = new Palpite($_POST["respostaC2"], $_POST["respostaF2"]);
         $palpiteList = $palpite->getPalpitesJogoX(2);
