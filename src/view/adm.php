@@ -127,7 +127,7 @@ foreach($list as $u){
         <tbody id="corpo_tabela">
             <?php foreach($list as $u){ ?>
                 <tr class="linha_tabela">
-                    <td class="item_tabela"><?= $u->reposicionamento ?></td>
+                    <td class="item_tabela"><div class="<?= $u->reposicionamento ?>"></div></td>
                     <td class="item_tabela"><?= $u->colocacao_atual ?></td>
                     <td class="item_tabela"><?= $u->pontos ?></td>
                     <td class="item_tabela"><?= $u->nome ?><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
