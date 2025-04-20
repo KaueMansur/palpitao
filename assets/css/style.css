@@ -169,6 +169,7 @@ form#login{
     align-items: center;
     justify-content: space-around;
     gap: 50px;
+    padding-bottom: 100px;
 }
 
 .iniciar_rodada_campo{
@@ -289,4 +290,26 @@ input[type=checkbox]:checked:after{
 
 .campo_palpite[disabled]{
     background-color: #0f0;
+}
+
+.big_font{
+    font-size: 1.3em;
+    transform: translate(0);
+    width: 130px;
+}
+
+.finalizar_rodadas_campos{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+#container_finalizar_rodadas{
+    background-color: var(--cor-quarta);
+    padding: 10px;
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

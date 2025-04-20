@@ -182,14 +182,23 @@ foreach($list as $u){
 
 
 <form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="forms">
-    
-        <input type="number" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= count($times) > 0 ? "" : "disabled" ?>>
-        <input type="number" name="respostaF" id="respostaF" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= count($times) > 1 ? "" : "disabled" ?>>
+    <h1 class="titulo_forms">Finaizar rodada</h1>
+    <div id="container_finalizar_rodadas">
+
+        <div class="finalizar_rodadas_campos">
+            <input type="number" class="campo_palpite big_font" name="respostaC" id="respostaC" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= count($times) > 0 ? "" : "disabled" ?>>
+            <span class="x">x</span>
+            <input type="number" class="campo_palpite big_font" name="respostaF" id="respostaF" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= count($times) > 1 ? "" : "disabled" ?>>
+        </div>
         <?php if(count($times) > 2){ ?>
-        <input type="number" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= count($times) > 2 ? "" : "disabled" ?>>
-        <input type="number" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= count($times) > 3 ? "" : "disabled" ?>>
+            <div class="finalizar_rodadas_campos">
+                <input type="number" class="campo_palpite big_font" name="respostaC2" id="respostaC2" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= count($times) > 2 ? "" : "disabled" ?>>
+                <span class="x">x</span>
+                <input type="number" class="campo_palpite big_font" name="respostaF2" id="respostaF2" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= count($times) > 3 ? "" : "disabled" ?>>
+            </div>
         <?php } ?>
-        <input type="submit" value="Finalizar rodada" class="btn">
+    </div>
+    <input type="submit" value="Finalizar rodada" class="btn">
     </form>
 
 <?php } else{?>
