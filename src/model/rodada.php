@@ -35,7 +35,7 @@ class Rodada
 
         $idRodada = $ultimoIdRodada[0]->{"MAX(id_rodada)"};
 
-        var_dump($idRodada);
+        // var_dump($idRodada);
 
         $db->insert(
             "INSERT INTO jogos_da_rodada(time_casa, time_fora, numero_do_jogo, id_rodada) VALUES ('{$this->timeQueJogaEmCasa}', '{$this->timeQueJogaFora}', 1, ($idRodada + 1))"

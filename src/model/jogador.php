@@ -3,7 +3,8 @@
 // require "database.php";
 require "palpite.php";
 
-class Jogador{
+class Jogador
+{
     private $id;
     private $nome;
     private $senha;
@@ -21,7 +22,8 @@ class Jogador{
         $this->senha = $senha;
     }
 
-    public function fazerLogin(){
+    public function fazerLogin()
+    {
         $db = new Database();
 
         $listaDeJogadores = $db->select(
@@ -30,9 +32,9 @@ class Jogador{
 
         $key = false;
 
-        foreach($listaDeJogadores as $jogador){
-            if($jogador->nome == $this->nome){
-                if($jogador->senha == $this->senha){
+        foreach ($listaDeJogadores as $jogador) {
+            if ($jogador->nome == $this->nome) {
+                if ($jogador->senha == $this->senha) {
 
                     $key = true;
 
@@ -50,20 +52,31 @@ class Jogador{
         return $key;
     }
 
-    function getAllUsers(){
+    function getAllUsers()
+    {
         $db = new Database();
 
-        return $list = $db->select(
+        return $db->select(
             "SELECT * FROM jogadores ORDER BY pontos DESC, nome ASC"
         );
     }
 
-    function definirPosicao(){
+    function getAllPlayers()
+    {
+        $db = new Database();
+
+        return $db->select(
+            "SELECT * FROM jogadores ORDER BY nome ASC"
+        );
+    }
+
+    function definirPosicao()
+    {
         $db = new Database();
 
         $jogador = $this->getAllUsers();
 
-        foreach($jogador as $u){
+        foreach ($jogador as $u) {
             $db->update(
                 "UPDATE jogadores SET colocacao_anterior = {$u->colocacao_atual} WHERE id_jogadores = {$u->id_jogadores}"
             );
@@ -72,41 +85,41 @@ class Jogador{
         $contagemPontosDistintos = $db->select(
             "SELECT COUNT(DISTINCT pontos) FROM jogadores"
         );
-        
+
         $db->update(
             "UPDATE jogadores SET colocacao_atual = 1 WHERE pontos = (SELECT MAX(pontos) FROM jogadores)"
         );
-        
+
         $pontos = $db->select(
             "SELECT DISTINCT(pontos) FROM jogadores ORDER BY pontos DESC"
         );
 
-        for($i = 1; $i < $contagemPontosDistintos[0]->{"COUNT(DISTINCT pontos)"}; $i++){
-            
+        for ($i = 1; $i < $contagemPontosDistintos[0]->{"COUNT(DISTINCT pontos)"}; $i++) {
+
             $db->update(
                 "UPDATE jogadores SET colocacao_atual = ($i + 1) WHERE pontos = {$pontos[$i]->{'pontos'}}"
             );
         }
-
     }
 
-    function definirAlteracaoNaPosicao(){
+    function definirAlteracaoNaPosicao()
+    {
         $db = new Database();
 
         $jogador = $this->getAllUsers();
 
-        foreach($jogador as $u){
-            if($u->colocacao_atual < $u->colocacao_anterior){
+        foreach ($jogador as $u) {
+            if ($u->colocacao_atual < $u->colocacao_anterior) {
                 //Subiu de posição
                 $db->update(
                     "UPDATE jogadores SET reposicionamento = 's' WHERE id_jogadores = {$u->id_jogadores}"
                 );
-            } else if($u->colocacao_atual > $u->colocacao_anterior){
+            } else if ($u->colocacao_atual > $u->colocacao_anterior) {
                 //Desceu de posição
                 $db->update(
                     "UPDATE jogadores SET reposicionamento = 'd' WHERE id_jogadores = {$u->id_jogadores}"
                 );
-            } else{
+            } else {
                 //Manteve na mesma posição
                 $db->update(
                     "UPDATE jogadores SET reposicionamento = 'm' WHERE id_jogadores = {$u->id_jogadores}"
@@ -115,9 +128,10 @@ class Jogador{
         }
     }
 
-    function definirTitulosDePosicao(){
+    function definirTitulosDePosicao()
+    {
         $db = new Database();
-        
+
         $db->update(
             "UPDATE jogadores SET titulo_de_posicao = null"
         );
@@ -144,92 +158,112 @@ class Jogador{
     //     );
     // }
 
-    function alterarSenha(){}
+    function alterarSenha() {}
 
-    function alterarFotoDePerfil(){}
+    function alterarFotoDePerfil() {}
 
-    public function getObject(){
+    public function getObject()
+    {
         return $this;
     }
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getNome(){
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function setNome($nome){
+    public function setNome($nome)
+    {
         $this->nome = $nome;
     }
 
-    public function getSenha(){
+    public function getSenha()
+    {
         return $this->senha;
     }
 
-    public function setSenha($senha){
+    public function setSenha($senha)
+    {
         $this->senha = $senha;
     }
 
-    public function getFotoDePerfil(){
+    public function getFotoDePerfil()
+    {
         return $this->fotoDePerfil;
     }
 
-    public function setFotoDePerfil($fotoDePerfil){
+    public function setFotoDePerfil($fotoDePerfil)
+    {
         $this->fotoDePerfil = $fotoDePerfil;
     }
 
-    public function getColocacaoAtual(){
+    public function getColocacaoAtual()
+    {
         return $this->colocacaoAtual;
     }
 
-    public function setColocacaoAtual($colocacaoAtual){
+    public function setColocacaoAtual($colocacaoAtual)
+    {
         $this->colocacaoAtual = $colocacaoAtual;
     }
 
-    public function getReposicionamentoNaTabela(){
+    public function getReposicionamentoNaTabela()
+    {
         return $this->reposicionamentoNaTabela;
     }
 
-    public function setReposicionamentoNaTabela($reposicionamentoNaTabela){
+    public function setReposicionamentoNaTabela($reposicionamentoNaTabela)
+    {
         $this->reposicionamentoNaTabela = $reposicionamentoNaTabela;
     }
 
-    public function getPalpites(){
+    public function getPalpites()
+    {
         return $this->palpites;
     }
 
-    public function setPalpites($palpites){
+    public function setPalpites($palpites)
+    {
         $this->palpites = $palpites;
     }
 
-    public function getPontos(){
+    public function getPontos()
+    {
         return $this->pontos;
     }
 
-    public function setPontos($pontos){
+    public function setPontos($pontos)
+    {
         $this->pontos = $pontos;
     }
 
-    public function getPontuacaoRodadaAtual(){
+    public function getPontuacaoRodadaAtual()
+    {
         return $this->pontuacaoRodadaAtual;
     }
 
-    public function setPontuacaoRodadaAtual($pontos){
+    public function setPontuacaoRodadaAtual($pontos)
+    {
         $this->pontuacaoRodadaAtual = $pontos;
     }
 
-    public function getAdm(){
+    public function getAdm()
+    {
         return $this->adm;
     }
 
-    public function setAdm($adm){
+    public function setAdm($adm)
+    {
         $this->adm = $adm;
     }
 }
-?>

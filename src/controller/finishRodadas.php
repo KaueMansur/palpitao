@@ -27,7 +27,7 @@ foreach($jogadorList as $j){
         if($numeroDePalpites[0]->{"COUNT(*)"} == "0"){
             //Não postou em determinado jogo
                 $db->insert(
-                    "INSERT INTO palpites(resultado_casa, id_jogadores, time_casa, time_fora, id_jogos) VALUES ('{$palpites->getResultadoDaCasa()}', '{$j->id_jogadores}', '{$r->time_casa}', '{$r->time_fora}', {$r->id_jogo})"
+                    "INSERT INTO palpites(resultado_casa, id_jogadores, time_casa, time_fora, id_jogos, quantidade_gols_casa, quantidade_gols_fora) VALUES ('{$palpites->getResultadoDaCasa()}', '{$j->id_jogadores}', '{$r->time_casa}', '{$r->time_fora}', {$r->id_jogo}, {$palpites->getNumeroDeGolsDaCasa()}, {$palpites->getNumeroDeGolsDeFora()})"
                 );
         } else{
             //Postou em determinado jogo
@@ -69,7 +69,7 @@ if($_POST["respostaC"] != ""){
                 } else{
                     //Errou quem ganha
                     $db->update(
-                        "UPDATE jogadores SET divida = divida + 2 WHERE id_jogadores = {$p->id_jogadoes}"
+                        "UPDATE jogadores SET divida = divida + 2 WHERE id_jogadores = {$p->id_jogadores}"
                     );
                 }
             }

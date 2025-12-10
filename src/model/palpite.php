@@ -44,7 +44,7 @@ class Palpite{
         $idJogoUm = $db->select("SELECT id_jogo FROM jogos_da_rodada WHERE status = 'Em andamento' and numero_do_jogo = 1");
         $idJogoDois = $db->select("SELECT id_jogo FROM jogos_da_rodada WHERE status = 'Em andamento' and numero_do_jogo = 2");
 
-        var_dump($idJogoUm);
+        // var_dump($idJogoUm);
 
         if($x == 1){
             foreach($list as $p){

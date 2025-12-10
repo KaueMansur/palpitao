@@ -13,6 +13,7 @@ $jogador = new Jogador();
 $db = new Database();
 
 $list = $jogador->getAllUsers();
+$listPalpites = $jogador->getAllPlayers();
 
 $numeroRodada = $db->select("SELECT MAX(id_rodada) FROM jogos_da_rodada");
 
@@ -128,8 +129,8 @@ if (isset($testeStatusJogo1[0])) {
             <thead id="cabecalho_tabela">
                 <th class="titulo_tabela">Reposicionamento</th>
                 <th class="titulo_tabela">Posição</th>
-                <th class="titulo_tabela">Pontos</th>
                 <th class="titulo_tabela">Nome</th>
+                <th class="titulo_tabela">Pontos</th>
                 <th class="titulo_tabela">Pontos na Rodada</th>
                 <th class="titulo_tabela">Dívida</th>
                 <th class="titulo_tabela">Pagou?</th>
@@ -141,10 +142,10 @@ if (isset($testeStatusJogo1[0])) {
                             <div class="<?= $u->reposicionamento ?>"></div>
                         </td>
                         <td class="item_tabela"><?= $u->colocacao_atual ?></td>
-                        <td class="item_tabela"><?= $u->pontos ?></td>
                         <td class="item_tabela"><?= $u->nome ?><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
+                        <td class="item_tabela"><?= $u->pontos ?></td>
                         <td class="item_tabela"><?= $u->pontos_na_rodada ?></td>
-                        <td class="item_tabela"><?= $u->divida ?></td>
+                        <td class="item_tabela">R$ <?= number_format($u->divida, 2, ",") ?></td>
                         <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></label></td>
                     </tr>
                 <?php } ?>
@@ -165,7 +166,7 @@ if (isset($testeStatusJogo1[0])) {
                     <?php } ?>
                 </thead>
                 <tbody class="corpo_tabela">
-                    <?php foreach ($list as $u) { ?>
+                    <?php foreach ($listPalpites as $u) { ?>
                         <tr class="linha_tabela">
                             <td class="item_tabela"><?= $u->nome ?></td>
                             <td class="item_tabela">

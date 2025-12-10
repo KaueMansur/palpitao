@@ -14,14 +14,18 @@ $idJogoUm = $db->select("SELECT id_jogo FROM jogos_da_rodada WHERE status = 'Em 
 $idJogoDois = $db->select("SELECT id_jogo FROM jogos_da_rodada WHERE status = 'Em andamento' and numero_do_jogo = 2");
 
 
-
-
 $jogosDaRodada = [];
 
 // var_dump($id_jogo1[0]->id_rodadas);
 // var_dump($id_jogo2->id_rodadas);
 
-array_push($jogosDaRodada, $idJogoUm[0]->id_jogo, $idJogoDois[0]->id_jogo);
+// if(count($testeStatusJogo1) > 0){
+//     array_push($jogosDaRodada, $idJogoUm[0]->id_jogo, $idJogoDois[0]->id_jogo);
+// } else{
+//     array_push($jogosDaRodada, $idJogoUm[0]->id_jogo, $idJogoDois[0]->id_jogo);
+// }
+
+
 
 // var_dump($jogosDaRodada);
 
@@ -32,7 +36,7 @@ if (count($testeStatusJogo1) > 0) {
         $timeCasa1 = $t->time_casa;
         $timeFora1 = $t->time_fora;
 
-        array_push($times, $timeCasa1, $timeFora1);
+        array_push($times, $timeCasa1, $timeFora1);    
         // var_dump($timeCasa1, $timeFora1);
     }
 }
@@ -59,6 +63,9 @@ if (count($testeStatusJogo2) > 0) {
         array_push($times, $timeCasa2, $timeFora2);
         // var_dump($timeCasa2, $timeFora2);
     }
+    array_push($jogosDaRodada, $idJogoUm[0]->id_jogo, $idJogoDois[0]->id_jogo);
+}else{
+    array_push($jogosDaRodada, $idJogoUm[0]->id_jogo);
 }
 
 foreach ($list as $u) {
