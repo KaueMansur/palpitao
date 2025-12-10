@@ -15,11 +15,14 @@ class Palpite{
         $this->numeroDeGolsDeFora = $golsFora;
 
         if($this->numeroDeGolsDaCasa > $this->numeroDeGolsDeFora){
-            $this->resultadoDaCasa = "Vitória";
+            //Vitória
+            $this->resultadoDaCasa = "V";
         } else if($this->numeroDeGolsDaCasa < $this->numeroDeGolsDeFora){
-            $this->resultadoDaCasa = "Derrota";
+            //Derrota
+            $this->resultadoDaCasa = "D";
         } else{
-            $this->resultadoDaCasa = "Empate";
+            //Empate
+            $this->resultadoDaCasa = "E";
         }
 
         $this->placar = "$this->numeroDeGolsDaCasa x $this->numeroDeGolsDeFora";
@@ -38,18 +41,20 @@ class Palpite{
 
         $jogoDaRodada = [];
 
-        $idJogo1 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 1");
-        $idJogo2 = $db->select("SELECT id_rodadas FROM jogos_da_rodada WHERE status = 'em andamento' and numero_do_jogo = 2");
+        $idJogoUm = $db->select("SELECT id_jogo FROM jogos_da_rodada WHERE status = 'Em andamento' and numero_do_jogo = 1");
+        $idJogoDois = $db->select("SELECT id_jogo FROM jogos_da_rodada WHERE status = 'Em andamento' and numero_do_jogo = 2");
+
+        var_dump($idJogoUm);
 
         if($x == 1){
             foreach($list as $p){
-                if($p->id_jogo_da_rodada == $idJogo1[0]->id_rodadas){
+                if($p->id_jogos == $idJogoUm[0]->id_jogo){
                     array_push($jogoDaRodada, $p);
                 }
             }
         } else{
             foreach($list as $p){
-                if($p->id_jogo_da_rodada == $idJogo2[0]->id_rodadas){
+                if($p->id_jogos == $idJogoDois[0]->id_jogo){
                     array_push($jogoDaRodada, $p);
                 }
             }
@@ -75,7 +80,7 @@ class Palpite{
     }
 
     public function getNumeroDeGolsDaCasa(){
-        return $this->id;
+        return $this->numeroDeGolsDaCasa;
     }
 
     public function setNumeroDeGolsDaCasa($gols){

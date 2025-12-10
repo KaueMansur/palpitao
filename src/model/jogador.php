@@ -99,15 +99,17 @@ class Jogador{
             if($u->colocacao_atual < $u->colocacao_anterior){
                 //Subiu de posição
                 $db->update(
-                    "UPDATE jogadores SET reposicionamento = 'subiu' WHERE id_jogadores = {$u->id_jogadores}"
+                    "UPDATE jogadores SET reposicionamento = 's' WHERE id_jogadores = {$u->id_jogadores}"
                 );
             } else if($u->colocacao_atual > $u->colocacao_anterior){
+                //Desceu de posição
                 $db->update(
-                    "UPDATE jogadores SET reposicionamento = 'caiu' WHERE id_jogadores = {$u->id_jogadores}"
+                    "UPDATE jogadores SET reposicionamento = 'd' WHERE id_jogadores = {$u->id_jogadores}"
                 );
             } else{
+                //Manteve na mesma posição
                 $db->update(
-                    "UPDATE jogadores SET reposicionamento = 'manteve' WHERE id_jogadores = {$u->id_jogadores}"
+                    "UPDATE jogadores SET reposicionamento = 'm' WHERE id_jogadores = {$u->id_jogadores}"
                 );
             }
         }

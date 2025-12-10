@@ -280,7 +280,7 @@ input[type=checkbox]:checked:after{
 
 .campo_palpite{
     font-size: 0.8em;
-    width: 100px;
+    width: 150px;
     height: 40px;
     border-radius: 5px;
     transform: translateY(-15.5px);
@@ -315,7 +315,9 @@ input[type=checkbox]:checked:after{
     gap: 10px;
 }
 
-.manteve{
+/* Manteve na mesma posição */
+
+.m{
     background-color: #b39b9b;
     height: 30px;
     width: 30px;
@@ -324,7 +326,9 @@ input[type=checkbox]:checked:after{
     border: 1px solid #000;
 }
 
-.caiu{
+/* Desceu na tabela */
+
+.d{
     
     background-color: #f00;
     height: 20px;
@@ -334,7 +338,7 @@ input[type=checkbox]:checked:after{
     border: 1px solid #000;
 }
 
-.caiu::after{
+.d::after{
     content: "";
     display: inline-block;
     height: 15px;
@@ -346,7 +350,8 @@ input[type=checkbox]:checked:after{
     transform: rotate(-45deg) translateX(-7px);
 }
 
-.subiu{
+/* Subiu na tabela */
+.s{
     background-color: #0f0;
     height: 20px;
     width: 10px;
@@ -356,7 +361,7 @@ input[type=checkbox]:checked:after{
     transform: translateY(5px);
 }
 
-.subiu::after{
+.s::after{
     content: "";
     display: inline-block;
     height: 15px;
@@ -368,6 +373,11 @@ input[type=checkbox]:checked:after{
     transform: rotate(135deg) translateY(10px) translateX(-4px);
 }   
 
+.subtitulo_rodada{
+    color: #fff;
+    font-size: 4em;
+    text-shadow: 2px 2px 5px #000;   
+}
 /* 
 INSERT INTO jogadores(nome, pontos)
 VALUES('Daniel 1983', 45),
