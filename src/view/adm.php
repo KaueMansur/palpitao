@@ -6,7 +6,11 @@ if (!isset($_SESSION["adm"])) {
     header("Refresh: 0; URL = ../../index.php");
 }
 
-require "../model/jogador.php";
+// require "../model/jogador.php";
+
+require "../model/pagamento.php";
+
+$pagamento = new Pagamento();
 
 $jogador = new Jogador();
 
@@ -110,12 +114,15 @@ if (isset($testeStatusJogo1[0])) {
 </head>
 
 <body class="page">
+
+    <button class="btn_inter_gremio">Regulamento</button>
+    <a href="../controller/session_destroy.php" id="logout">Log out</a>
+
+    <article id="regulamento_container">
+
+    </article>
+
     <h1> <span style="color: blue;">Painel d</span><span style="color: red;">e controle</span></h1>
-
-
-
-
-
 
     <form action="../controller/dividaController.php" method="post" id="tabela_form" class="forms">
         <h1 class="titulo_forms">Tabela</h1>
@@ -123,17 +130,21 @@ if (isset($testeStatusJogo1[0])) {
             <?php if (isset($numeroRodada[0]->{"MAX(id_rodada)"})) { ?>
 
                 <h2 class="subtitulo_rodada">Rodada <?= $numeroRodada[0]->{"MAX(id_rodada)"} ?></h2>
+                <button type="button" class="btn_premios" onclick="mostrarPremios()">🏆</button>
 
             <?php } ?>
-
-            <thead id="cabecalho_tabela">
-                <th class="titulo_tabela">Reposicionamento</th>
-                <th class="titulo_tabela">Posição</th>
-                <th class="titulo_tabela">Nome</th>
-                <th class="titulo_tabela">Pontos</th>
-                <th class="titulo_tabela">Pontos na Rodada</th>
-                <th class="titulo_tabela">Dívida</th>
-                <th class="titulo_tabela">Pagou?</th>
+            <!-- Reposicionamento -->
+            <thead>
+                <tr id="cabeca_tabela">
+                    <th class="titulo_tabela"></th>
+                    <th class="titulo_tabela">Posição</th>
+                    <th class="titulo_tabela">Nome</th>
+                    <th class="titulo_tabela">Pontos</th>
+                    <th class="titulo_tabela" id="th_pontos_na_rodada">Pontos na Rodada</th>
+                    <!-- <th class="titulo_tabela" id="th_premio">Prêmio</th> -->
+                    <th class="titulo_tabela">Dívida</th>
+                    <th class="titulo_tabela">Pagou?</th>
+                </tr>
             </thead>
             <tbody id="corpo_tabela">
                 <?php foreach ($list as $u) { ?>
@@ -145,6 +156,26 @@ if (isset($testeStatusJogo1[0])) {
                         <td class="item_tabela"><?= $u->nome ?><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
                         <td class="item_tabela"><?= $u->pontos ?></td>
                         <td class="item_tabela"><?= $u->pontos_na_rodada ?></td>
+                        <td class="item_tabela td_premio"><?php
+                                                            $porcentagemColocacao = 0;
+
+                                                            if ($u->colocacao_atual == 1) {
+                                                                $porcentagemColocacao = 30;
+                                                            } else if ($u->colocacao_atual == 2) {
+                                                                $porcentagemColocacao = 20;
+                                                            } else if ($u->colocacao_atual == 3) {
+                                                                $porcentagemColocacao = 15;
+                                                            } else if ($u->colocacao_atual == 4) {
+                                                                $porcentagemColocacao = 10;
+                                                            } else if ($u->colocacao_atual == 5) {
+                                                                $porcentagemColocacao = 5;
+                                                            }
+
+                                                            if ($u->adm == 0) {
+                                                                echo "R$ " . number_format(($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}), 2, ",");
+                                                            } else {
+                                                                echo "R$ " . number_format((($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}) + $pagamento->calculaValorPosicao(20)), 2, ",");
+                                                            }                        ?></td>
                         <td class="item_tabela">R$ <?= number_format($u->divida, 2, ",") ?></td>
                         <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></label></td>
                     </tr>
@@ -152,6 +183,41 @@ if (isset($testeStatusJogo1[0])) {
             </tbody>
         </table>
         <input type="submit" value="Atualizar dívidas" class="btn">
+        <!-- style="display: none;" -->
+        <p id="textoParaCopiar">*CLASSIFICAÇÃO DA <?= $numeroRodada[0]->{"MAX(id_rodada)"} ?>⁰ RODADA*</br></br>
+            <?php foreach ($list as $u) {
+                if ($u->reposicionamento == "s") {
+                    echo "⬆️ ";
+                } else if ($u->reposicionamento == "d") {
+                    echo "⬇️ ";
+                } else {
+                    echo "⏹️ ";
+                }
+
+                $nome = strtoupper($u->nome);
+
+                echo $u->colocacao_atual . "⁰ " . $u->pontos . " P. $nome";
+
+                if ($u->cem_porcento == 1) {
+                    echo "💯";
+                }
+
+                if ($u->titulo_de_posicao == "Lanterna") {
+                    echo "🔦";
+                }
+                echo "<br>";
+            } ?>
+            </br></br>
+            *LEGENDA:*
+            </br></br>
+            ⬆️ Subiu de posição na tabela</br>
+            ⏹️ Manteve a sua posição na tabela</br>
+            ⬇️ Desceu de posição na tabela</br>
+            🚫 Não faz mais parte do PALPITÃO</br>
+            💯 Acertou em cheio todos os jogos da rodada</br>
+            🔦 Não precisa nem dizer né❓❓❓ 🤔 🤣🤣🤣
+        </p>
+        <button type="button" onclick="copiarTexto()">Copiar Texto</button>
     </form>
 
     <?php if (count($times) > 0) { ?>
@@ -189,6 +255,7 @@ if (isset($testeStatusJogo1[0])) {
             </table>
             <input type="submit" value="Palpitar" class="btn">
         </form>
+
 
 
 
@@ -245,7 +312,8 @@ if (isset($testeStatusJogo1[0])) {
 
     <?php } ?>
 
-    <a href="../controller/session_destroy.php" id="logout">Log out</a>
+    <div class="valor_total">R$ <?= number_format($pagamento->calculaValorTotal()[0]->{"SUM(valor)"}, 2, ",") ?></div>
+
     <script src="../../assets/js/script.js"></script>
 </body>
 

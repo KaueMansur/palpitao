@@ -84,9 +84,9 @@ if($_POST["respostaC"] != ""){
                         //     "UPDATE jogadores SET pontos = pontos + 3 WHERE id_jogadores = {$p->id_jogador}"
                         // );
 
-                        if($rodada->contarNumeroDeRodadasAtivas()[0]->{"COUNT(*)"} == "1"){
+                        if($rodada->contarNumeroDeRodadasAtivas()[0]->{"COUNT(*)"} == 1){
                             $db->update(
-                                "UPDATE jogadores SET pontos_na_rodada = pontos_na_rodada + 3, cem_porcento = 1 WHERE id_jogadores = {$p->id_jogadores}"
+                                "UPDATE jogadores SET pontos_na_rodada = 3, cem_porcento = 1 WHERE id_jogadores = {$p->id_jogadores}"
                             );
                         } else{
                             $db->update(
@@ -154,7 +154,7 @@ if(isset($_POST["respostaC2"])){
 
 foreach($palpiteList as $p){
     $db->update(
-        "UPDATE jogadores SET pontos = pontos + pontos_na_rodada WHERE id_jogadores = {$p->id_jogadores};"
+        "UPDATE jogadores SET pontos = pontos + pontos_na_rodada WHERE id_jogadores = {$p->id_jogadores}"
     );
 }
 

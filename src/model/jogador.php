@@ -145,6 +145,13 @@ class Jogador
         );
     }
 
+    public function getQuantidadeMesmaPosicao($posicao){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT COUNT(colocacao_atual) FROM jogadores WHERE colocacao_atual = $posicao"
+        );
+    }
     // function palpitar($golsDaCasaJogo1, $golsForaJogo1, $golsDaCasaJogo2, $golsForaJogo2){
     //     $palpiteJogo1 = new Palpite($golsDaCasaJogo1, $golsForaJogo1);
     //     $palpiteJogo2 = new Palpite($golsDaCasaJogo2, $golsForaJogo2);

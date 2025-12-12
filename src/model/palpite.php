@@ -9,7 +9,7 @@ class Palpite{
     private $resultadoDaCasa;
     private $placar;
 
-    public function __construct($golsDaCasa = 0, $golsFora = 0)
+    public function __construct($golsDaCasa = 9, $golsFora = 9)
     {
         $this->numeroDeGolsDaCasa = $golsDaCasa;
         $this->numeroDeGolsDeFora = $golsFora;
