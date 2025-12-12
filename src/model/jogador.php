@@ -173,6 +173,14 @@ class Jogador
         );
     }
 
+    public function getListaNegra(){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT * FROM jogadores WHERE status = 0 ORDER BY nome ASC"
+        );
+    }
+
     function alterarSenha() {}
 
     function alterarFotoDePerfil() {}

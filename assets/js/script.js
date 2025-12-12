@@ -3,12 +3,14 @@
 const thPremio = document.getElementById("th_premio");
 const tdPremio = document.querySelectorAll(".td_premio");
 
-const thPontosRodada = document.getElementById("th_pontos_na_rodada");
+const thDivida = document.getElementById("th_divida");
 
 const tabela = document.getElementById("cabeca_tabela");
 
 const itemBanir = document.querySelectorAll(".item_banir");
 const tituloBanir = document.getElementById("titulo_banir");
+
+const listaNegra = document.getElementById("lista_negra_container");
 
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
@@ -20,54 +22,67 @@ function copiarTexto() {
 }
 
 function mostrarPremios() {
-
-    if (!thPremio) {
-        console.log("item inexistente")
-        const th = document.createElement("th");
-        th.textContent = "Prêmio";
-        th.setAttribute("id", "th_premio");
-        th.setAttribute("class", "titulo_tabela");
-        // tabela.appendChild(th);
-        thPontosRodada.insertAdjacentElement("afterend", th);
-    
-        tdPremio.forEach(td => {
-            td.style.display = "block"
-        })
-        console.log(thPremio)
-    } else {
-        console.log("Item existente")
-    }
     // console.log(tabela)
     // console.log(thPremio)
+    if (thPremio.style.display == "none") {
 
-    // if (typeof thPremio == null) {
+        thPremio.style.display = "block";
 
+        tdPremio.forEach(td => {
+            td.style.display = "block";
+        });
 
+        const newTh = document.createElement("th");
+        const otherTh = document.createElement("th");
+        const othertTh = document.createElement("th");
 
-    // console.log("Tag Existente")
-    // tdPremio.forEach(td => {
-    //     td.style.display = "none"
-    // })
-    // } else {
-    // console.log("Tag inexistente")
+        newTh.setAttribute("id", "new_th")
+        otherTh.setAttribute("id", "other_th")
+        othertTh.setAttribute("id", "othert_th")
 
-    // th.id = "th_premio";
-    // th.classList.add("titulo_tabela");
-    // parentElement.insertBefore(th, thPontosRodada);
-    // }
+        newTh.classList.add("titulo_tabela");
+        otherTh.classList.add("titulo_tabela");
+        othertTh.classList.add("titulo_tabela");
+
+        newTh.style.display = "none";
+        otherTh.style.display = "none";
+        othertTh.style.display = "none";
+
+        thDivida.insertAdjacentElement("afterend", newTh)
+        newTh.insertAdjacentElement("afterend", otherTh)
+        otherTh.insertAdjacentElement("afterend", othertTh)
+    } else {
+        thPremio.style.display = "none";
+
+        tdPremio.forEach(td => {
+            td.style.display = "none";
+        });
+
+        document.getElementById("new_th").remove();
+        document.getElementById("other_th").remove();
+        document.getElementById("othert_th").remove();
+    }
 }
 
-function mostrarOpcaoBanir(){
-    if(tituloBanir.style.display == "none"){
+function mostrarOpcaoBanir() {
+    if (tituloBanir.style.display == "none") {
         //habilitar
         tituloBanir.style.display = "table-cell";
-        itemBanir.forEach(item=>{
+        itemBanir.forEach(item => {
             item.style.display = "flex";
         });
-    } else{
+    } else {
         tituloBanir.style.display = "none";
-        itemBanir.forEach(item=>{
+        itemBanir.forEach(item => {
             item.style.display = "none";
         });
     }
+}
+
+function fecharListaNegra() {
+    listaNegra.style.display = "none";
+}
+
+function abrirListaNegra() {
+    listaNegra.style.display = "flex";
 }

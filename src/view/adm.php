@@ -61,6 +61,8 @@ $palpite = new Palpite();
 
 $pList = $palpite->getAllPalpites();
 
+$listaNegra = $jogador->getListaNegra();
+
 $palpitesC = [];
 $palpitesF = [];
 
@@ -133,6 +135,19 @@ if (isset($testeStatusJogo1[0])) {
                 <button type="button" class="btn_premios btn_actions" onclick="mostrarPremios()">🏆</button>
                 <button type="button" class="btn_banir btn_actions" id="btn_habilitar_banimentos" onclick="mostrarOpcaoBanir()">🚫</button>
 
+                <button type="button" onclick="copiarTexto()" class="btn_actions btn_copiar"><img src="../../assets/img/icones/copiar.png" width="45px"></button>
+                <button type="button" onclick="abrirListaNegra()" class="btn_actions btn_lista_negra"><img src="../../assets/img/icones/lista-negra.png" width="45px"></button>
+
+                <article class="lista_negra_container" id="lista_negra_container">
+                    <button type="button" onclick="fecharListaNegra()" class="btn_fechar">x</button>
+                    <h2><span style="color: blue;">Lista</span> <span style="color: red;">Negra</span></h2>
+                    <ul class="lista_negra">
+                        <?php foreach ($listaNegra as $u) { ?>
+                            <li class="item_lista_negra">🚫<?= $u->nome ?></li>
+                        <?php } ?>
+                    </ul>
+                </article>
+
             <?php } ?>
             <!-- Reposicionamento -->
             <thead>
@@ -142,8 +157,10 @@ if (isset($testeStatusJogo1[0])) {
                     <th class="titulo_tabela">Nome</th>
                     <th class="titulo_tabela">Pontos</th>
                     <th class="titulo_tabela" id="th_pontos_na_rodada">Pontos na Rodada</th>
-                    <!-- <th class="titulo_tabela" id="th_premio">Prêmio</th> -->
-                    <th class="titulo_tabela">Dívida</th>
+                    <th class="titulo_tabela" id="th_divida">Dívida</th>
+                    <th style="display: none;" class="titulo_tabela"></th>
+                    <!-- <th style="display: none;" class="titulo_tabela"></th> -->
+                    <th class="titulo_tabela" id="th_premio">Prêmio</th>
                     <th class="titulo_tabela">Pagou?</th>
                     <th class="titulo_tabela" id="titulo_banir"></th>
                 </tr>
@@ -159,6 +176,7 @@ if (isset($testeStatusJogo1[0])) {
                             <td class="item_tabela"><?= $u->nome ?><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
                             <td class="item_tabela"><?= $u->pontos ?></td>
                             <td class="item_tabela"><?= $u->pontos_na_rodada ?></td>
+                            <td class="item_tabela">R$ <?= number_format($u->divida, 2, ",") ?></td>
                             <td class="item_tabela td_premio"><?php
                                                                 $porcentagemColocacao = 0;
 
@@ -179,7 +197,6 @@ if (isset($testeStatusJogo1[0])) {
                                                                 } else {
                                                                     echo "R$ " . number_format((($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}) + $pagamento->calculaValorPosicao(20)), 2, ",");
                                                                 }                        ?></td>
-                            <td class="item_tabela">R$ <?= number_format($u->divida, 2, ",") ?></td>
                             <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></label></td>
                             <td class="item_tabela item_banir">
                                 <form action="../controller/banir_controller.php" method="post">
@@ -228,7 +245,9 @@ if (isset($testeStatusJogo1[0])) {
             foreach ($list as $u) {
 
                 if ($u->status == 0) {
-                    echo "🚫 $u->nome";
+                    $nome = strtoupper($u->nome);
+
+                    echo "🚫 $nome";
                     echo "<br>";
                 }
             }
@@ -244,7 +263,6 @@ if (isset($testeStatusJogo1[0])) {
             💯 Acertou em cheio todos os jogos da rodada</br>
             🔦 Não precisa nem dizer né❓❓❓ 🤔 🤣🤣🤣
         </p>
-        <button type="button" onclick="copiarTexto()">Copiar Texto</button>
     </form>
 
     <?php if (count($times) > 0) { ?>
@@ -259,7 +277,8 @@ if (isset($testeStatusJogo1[0])) {
                     <?php } ?>
                 </thead>
                 <tbody class="corpo_tabela">
-                    <?php foreach ($listPalpites as $u) { ?>
+                    <?php foreach ($listPalpites as $u) { 
+                        if($u->status == 1){ ?>
                         <tr class="linha_tabela">
                             <td class="item_tabela"><?= $u->nome ?></td>
                             <td class="item_tabela">
@@ -277,7 +296,7 @@ if (isset($testeStatusJogo1[0])) {
 
                             <?php } ?>
                         </tr>
-                    <?php } ?>
+                    <?php }} ?>
                 </tbody>
             </table>
             <input type="submit" value="Palpitar" class="btn">

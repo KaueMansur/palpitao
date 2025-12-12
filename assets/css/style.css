@@ -255,7 +255,16 @@ form#login{
 }
 
 #th_premio{
-    /* display: none; */
+    display: none;
+}
+
+
+.azul{
+    background-color: #00f;
+}
+
+.vermelho{
+    background-color: #F00;
 }
 
 .td_premio{
@@ -470,6 +479,83 @@ input[type=checkbox]:checked:after{
     border: 2px solid #000;
     border-radius: 5px;
     margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_lista_negra{
+    background-color: #423b3b;
+    left: 200px;
+}
+
+.lista_negra_container{
+    position: fixed;
+    width: 60vw;
+    height: 80vh;
+    border: 2px solid #000;
+    top: calc(50% - 40vh);
+    z-index: 2;
+    background-color: rgb(63, 150, 221);
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: scroll;
+    padding: 30px 0;
+    gap: 20px;
+}
+
+.lista_negra{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 10px;
+}
+
+.item_lista_negra{
+    list-style-type: none;
+    font-size: 1.8em;
+    letter-spacing: 10px;
+    background-color: #F00;
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: 3px solid #000;
+    /* text-align: justify; */
+    padding-left: 130px;
+}
+
+.btn_fechar{
+    background-color: #FF2929;
+    font-family: sans-serif;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    font-weight: 700;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    font-size: 2.4em;
+    left: 280px;
+    top: 80px;
+    cursor: pointer;
+}
+
+#textoParaCopiar{
+
+    /* visibility: hidden; */
+    position: absolute;
+    z-index: -10;
+    left: -1000px;
+}
+
+.btn_copiar{
+    background-color: #00f;
+    left: 130px;
 }
 /* 
 INSERT INTO jogadores(nome, pontos)
