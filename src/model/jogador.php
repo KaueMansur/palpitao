@@ -165,6 +165,14 @@ class Jogador
     //     );
     // }
 
+    public function banirjogador($idJogador){
+        $db = new Database();
+
+        $db->update(
+            "UPDATE jogadores SET status = 0 WHERE id_jogadores = $idJogador"
+        );
+    }
+
     function alterarSenha() {}
 
     function alterarFotoDePerfil() {}

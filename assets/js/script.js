@@ -7,6 +7,9 @@ const thPontosRodada = document.getElementById("th_pontos_na_rodada");
 
 const tabela = document.getElementById("cabeca_tabela");
 
+const itemBanir = document.querySelectorAll(".item_banir");
+const tituloBanir = document.getElementById("titulo_banir");
+
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
     navigator.clipboard.writeText(texto).then(() => {
@@ -52,4 +55,19 @@ function mostrarPremios() {
     // th.classList.add("titulo_tabela");
     // parentElement.insertBefore(th, thPontosRodada);
     // }
+}
+
+function mostrarOpcaoBanir(){
+    if(tituloBanir.style.display == "none"){
+        //habilitar
+        tituloBanir.style.display = "table-cell";
+        itemBanir.forEach(item=>{
+            item.style.display = "flex";
+        });
+    } else{
+        tituloBanir.style.display = "none";
+        itemBanir.forEach(item=>{
+            item.style.display = "none";
+        });
+    }
 }

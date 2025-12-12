@@ -130,7 +130,8 @@ if (isset($testeStatusJogo1[0])) {
             <?php if (isset($numeroRodada[0]->{"MAX(id_rodada)"})) { ?>
 
                 <h2 class="subtitulo_rodada">Rodada <?= $numeroRodada[0]->{"MAX(id_rodada)"} ?></h2>
-                <button type="button" class="btn_premios" onclick="mostrarPremios()">🏆</button>
+                <button type="button" class="btn_premios btn_actions" onclick="mostrarPremios()">🏆</button>
+                <button type="button" class="btn_banir btn_actions" id="btn_habilitar_banimentos" onclick="mostrarOpcaoBanir()">🚫</button>
 
             <?php } ?>
             <!-- Reposicionamento -->
@@ -144,70 +145,96 @@ if (isset($testeStatusJogo1[0])) {
                     <!-- <th class="titulo_tabela" id="th_premio">Prêmio</th> -->
                     <th class="titulo_tabela">Dívida</th>
                     <th class="titulo_tabela">Pagou?</th>
+                    <th class="titulo_tabela" id="titulo_banir"></th>
                 </tr>
             </thead>
             <tbody id="corpo_tabela">
-                <?php foreach ($list as $u) { ?>
-                    <tr class="linha_tabela">
-                        <td class="item_tabela">
-                            <div class="<?= $u->reposicionamento ?>"></div>
-                        </td>
-                        <td class="item_tabela"><?= $u->colocacao_atual ?></td>
-                        <td class="item_tabela"><?= $u->nome ?><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
-                        <td class="item_tabela"><?= $u->pontos ?></td>
-                        <td class="item_tabela"><?= $u->pontos_na_rodada ?></td>
-                        <td class="item_tabela td_premio"><?php
-                                                            $porcentagemColocacao = 0;
+                <?php foreach ($list as $u) {
+                    if ($u->status == 1) { ?>
+                        <tr class="linha_tabela">
+                            <td class="item_tabela">
+                                <div class="<?= $u->reposicionamento ?>"></div>
+                            </td>
+                            <td class="item_tabela"><?= $u->colocacao_atual ?></td>
+                            <td class="item_tabela"><?= $u->nome ?><?= $u->titulo_de_posicao == "Líder" ? "👑" : "", $u->titulo_de_posicao == "Lanterna" ? "🔦" : "" ?><?= $u->cem_porcento == "1" ? "💯" : "" ?></td>
+                            <td class="item_tabela"><?= $u->pontos ?></td>
+                            <td class="item_tabela"><?= $u->pontos_na_rodada ?></td>
+                            <td class="item_tabela td_premio"><?php
+                                                                $porcentagemColocacao = 0;
 
-                                                            if ($u->colocacao_atual == 1) {
-                                                                $porcentagemColocacao = 30;
-                                                            } else if ($u->colocacao_atual == 2) {
-                                                                $porcentagemColocacao = 20;
-                                                            } else if ($u->colocacao_atual == 3) {
-                                                                $porcentagemColocacao = 15;
-                                                            } else if ($u->colocacao_atual == 4) {
-                                                                $porcentagemColocacao = 10;
-                                                            } else if ($u->colocacao_atual == 5) {
-                                                                $porcentagemColocacao = 5;
-                                                            }
+                                                                if ($u->colocacao_atual == 1) {
+                                                                    $porcentagemColocacao = 30;
+                                                                } else if ($u->colocacao_atual == 2) {
+                                                                    $porcentagemColocacao = 20;
+                                                                } else if ($u->colocacao_atual == 3) {
+                                                                    $porcentagemColocacao = 15;
+                                                                } else if ($u->colocacao_atual == 4) {
+                                                                    $porcentagemColocacao = 10;
+                                                                } else if ($u->colocacao_atual == 5) {
+                                                                    $porcentagemColocacao = 5;
+                                                                }
 
-                                                            if ($u->adm == 0) {
-                                                                echo "R$ " . number_format(($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}), 2, ",");
-                                                            } else {
-                                                                echo "R$ " . number_format((($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}) + $pagamento->calculaValorPosicao(20)), 2, ",");
-                                                            }                        ?></td>
-                        <td class="item_tabela">R$ <?= number_format($u->divida, 2, ",") ?></td>
-                        <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></label></td>
-                    </tr>
-                <?php } ?>
+                                                                if ($u->adm == 0) {
+                                                                    echo "R$ " . number_format(($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}), 2, ",");
+                                                                } else {
+                                                                    echo "R$ " . number_format((($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}) + $pagamento->calculaValorPosicao(20)), 2, ",");
+                                                                }                        ?></td>
+                            <td class="item_tabela">R$ <?= number_format($u->divida, 2, ",") ?></td>
+                            <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></label></td>
+                            <td class="item_tabela item_banir">
+                                <form action="../controller/banir_controller.php" method="post">
+                                    <input type="hidden" name="id_jogador" value="<?= $u->id_jogadores ?>">
+                                    <input type="submit" class="btn_banir" value="🚫">
+                                </form>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
         <input type="submit" value="Atualizar dívidas" class="btn">
         <!-- style="display: none;" -->
         <p id="textoParaCopiar">*CLASSIFICAÇÃO DA <?= $numeroRodada[0]->{"MAX(id_rodada)"} ?>⁰ RODADA*</br></br>
             <?php foreach ($list as $u) {
-                if ($u->reposicionamento == "s") {
-                    echo "⬆️ ";
-                } else if ($u->reposicionamento == "d") {
-                    echo "⬇️ ";
-                } else {
-                    echo "⏹️ ";
+                if ($u->status == 1) {
+
+
+                    if ($u->reposicionamento == "s") {
+                        echo "⬆️ ";
+                    } else if ($u->reposicionamento == "d") {
+                        echo "⬇️ ";
+                    } else {
+                        echo "⏹️ ";
+                    }
+
+                    $nome = strtoupper($u->nome);
+
+                    echo $u->colocacao_atual . "⁰ " . $u->pontos . " P. $nome";
+
+                    if ($u->cem_porcento == 1) {
+                        echo "💯";
+                    }
+
+                    if ($u->titulo_de_posicao == "Lanterna") {
+                        echo "🔦";
+                    }
+                    echo "<br>";
                 }
+            }
 
-                $nome = strtoupper($u->nome);
+            ?>
+            </br>
+            <?php
+            foreach ($list as $u) {
 
-                echo $u->colocacao_atual . "⁰ " . $u->pontos . " P. $nome";
-
-                if ($u->cem_porcento == 1) {
-                    echo "💯";
+                if ($u->status == 0) {
+                    echo "🚫 $u->nome";
+                    echo "<br>";
                 }
+            }
+            ?>
 
-                if ($u->titulo_de_posicao == "Lanterna") {
-                    echo "🔦";
-                }
-                echo "<br>";
-            } ?>
-            </br></br>
+            </br>
             *LEGENDA:*
             </br></br>
             ⬆️ Subiu de posição na tabela</br>

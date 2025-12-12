@@ -45,6 +45,24 @@ h1{
     text-shadow: #000 1px 1px 1px;
 }
 
+.btn_banir{
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.item_banir, #titulo_banir{
+    display: none;
+}
+
 h2{
     font-size: 2.5em;
 }
@@ -434,16 +452,24 @@ input[type=checkbox]:checked:after{
 }
 
 .btn_premios{
+    right: 130px;
+    background-color: #f00;
+}
+
+#btn_habilitar_banimentos{
+    right: 200px;
+}
+
+.btn_actions{
+    font-size: 2em;
     position: absolute;
     top: 400px;
-    right: 130px;
-    font-size: 2em;
-    background-color: #f00;
-    border-radius: 5px;
-    border: 2px solid #000;
+    cursor: pointer;
     width: 60px;
     height: 60px;
-    cursor: pointer;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin-top: 0;
 }
 /* 
 INSERT INTO jogadores(nome, pontos)
