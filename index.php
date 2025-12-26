@@ -35,7 +35,7 @@ if(isset($_POST["nome"])){
 </head>
 <body id="index">
     <header>
-        <h1> <span style="color: blue;">Palpitão Du</span><span style="color: red;">pla Grenal</span></h1>
+        <h1> <span style="color: blue;">Palp</span><span style="color: red;">itão</span> <span style="color: blue;">Du</span><span style="color: red;">pla</span> <span style="color: blue;">Gre</span><span style="color: red;">nal</span></h1>
     </header>
     <main>
         <form action="#" method="post" id="login">
@@ -43,7 +43,7 @@ if(isset($_POST["nome"])){
             <div class="campos_container">
                 <div class="campos_div">
                     <label for="campo_nome" class="campos_label">Nome:</label>
-                    <input type="text" name="nome" id="campo_nome" class="campos_campos">
+                    <input type="text" name="nome" id="campo_nome" class="campos_campos" value="Luizinho">
                 </div>
                 <div class="campos_div">
                     <label for="campo_senha" class="campos_label">Senha:</label>

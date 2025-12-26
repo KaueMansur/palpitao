@@ -308,7 +308,7 @@ if (isset($testeStatusJogo1[0])) {
 
 
         <form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="forms">
-            <h1 class="titulo_forms">Finaizar rodada</h1>
+            <h1 class="titulo_forms">Resultados <br>dos jogos</h1>
             <div id="container_finalizar_rodadas">
 
                 <div class="finalizar_rodadas_campos">
