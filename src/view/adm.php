@@ -117,11 +117,68 @@ if (isset($testeStatusJogo1[0])) {
 
 <body class="page">
 
-    <button class="btn_inter_gremio">Regulamento</button>
+    <button class="btn_inter_gremio" onclick="abrirRegulamento()">Regulamento</button>
     <a href="../controller/session_destroy.php" id="logout">Log out</a>
 
     <article id="regulamento_container">
-
+        <h2>REGULAMENTO PALPITÃO DA DUPLA GRENAL 2026</h2>
+        <ul class="ul_pontuacao">
+            <li>Acerto de placar exato: 03 pontos (não paga nada);</li>
+            <li>Acerto do vencedor/empate (placar incorreto): 01 ponto e paga R$ 0,50;</li>
+            <li>Erro total do resultado: 00 ponto e paga R$ 1,00.</li>
+        </ul>
+        <h3 class="txt_destacado">GRENAL VALE O DOBRO (Pontos e valores de multa).</h3>
+        <h3>Regras de Participação:</h3>
+        <ul class="lista_regras">
+            <li>
+                <h4>Prazo</h4>
+                <p>O participante deve postar seu(s) palpite(s) até 10 (dez) minutos antes do início do primeiro jogo da rodada da dupla Grenal. Caso o prazo não seja cumprido, o palpite será anulado: o participante não somará pontos e pagará R$ 1,00 por jogo (ou R$ 2,00 em caso de Grenal).</p>
+            </li>
+            <li>
+                <h4>Alterações</h4>
+                <p>É estritamente proibido alterar os placares após a postagem no grupo.</p>
+            </li>
+            <li>
+                <h4>Clareza</h4>
+                <p>Palpites incompletos ou confusos serão anulados. Serão considerados apenas os palpites que estiverem em total conformidade com este regulamento.</p>
+            </li>
+            <li>
+                <h4>Copa do Mundo</h4>
+                <p>EM 2026, OS JOGOS DA SELEÇÃO BRASILEIRA TAMBÉM FARÃO PARTE DESTE PALPITÃO</p>
+            </li>
+        </ul>
+        <h3>PREMIAÇÕES</h3>
+        <ul class="lista_premiacoes">
+            <li>1⁰ Lugar: 25%</li>
+            <li>2⁰ Lugar: 20%</li>
+            <li>3⁰ Lugar: 15%</li>
+            <li>4⁰ Lugar: 10%</li>
+            <li>5⁰ Lugar: 05%</li>
+            <li>Taxa Adm: 25%</li>
+        </ul>
+        <h3 style="text-align: center;">OBS.: CASO HAJA EMPATE EM QUALQUER UMA DAS FAIXAS DE DE PREMIAÇÃO (DO 1º AO 5º LUGAR), O VALOR CORRESPONDENTE SERÁ DIVIDIDO EM PARTES IGUAIS ENTRE OS EMPATADOS.</h3>
+            <h3 class="txt_destacado">AVISOS IMPORTANTES</h3>
+        <ul class="lista_regras">
+            <li>
+                <h4>Atualização da Tabela</h4>
+                <p>A FINALIZAÇÃO DA RODADA E A ATUALIZAÇÃO DA TABELA DE CLASSIFICAÇÃO OCORRERÃO SEMPRE ANTES DO INÍCIO DA RODADA SEGUINTE.</p>
+            </li>
+            <li>
+                <h4>TAXA DE ADESÃO</h4>
+                <p>O valor da adesão é de R$ 30,00. Este valor será devolvido integralmente aos participantes que permanecerem no grupo até a última rodada.</p>
+            </li>
+            <li>
+                <h4>Exclusão e Multas</h4>
+                <p>O participante será automaticamente excluído e perderá o valor da adesão caso:</p>
+                <br>
+                <ul>
+                    <li class="regras_exclusao">Desista ou peça para sair do grupo.</li>
+                    <li class="regras_exclusao">Atrase o pagamento por dois meses (consecutivos ou não).</li>
+                </ul>
+            </li>
+        </ul>
+        <p>Nesses casos, o valor da adesão será revertido para o grupo para cobrir débitos pendentes.</p>
+        <p class="assinatura">ATT, LUIZINHO</p>
     </article>
 
     <h1> <span style="color: blue;">Painel d</span><span style="color: red;">e controle</span></h1>
@@ -277,26 +334,27 @@ if (isset($testeStatusJogo1[0])) {
                     <?php } ?>
                 </thead>
                 <tbody class="corpo_tabela">
-                    <?php foreach ($listPalpites as $u) { 
-                        if($u->status == 1){ ?>
-                        <tr class="linha_tabela">
-                            <td class="item_tabela"><?= $u->nome ?></td>
-                            <td class="item_tabela">
-                                <input type="number" id="placarC<?= $u->id_jogadores ?>" class="campo_palpite" name="placarC<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>>
-                                <span class="x">x</span>
-                                <input type="number" id="placarF<?= $u->id_jogadores ?>" class="campo_palpite" name="placarF<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>>
-                            </td>
-                            <?php if (count($times) > 2) { ?>
-
+                    <?php foreach ($listPalpites as $u) {
+                        if ($u->status == 1) { ?>
+                            <tr class="linha_tabela">
+                                <td class="item_tabela"><?= $u->nome ?></td>
                                 <td class="item_tabela">
-                                    <input type="number" id="placarC<?= $u->id_jogadores ?>" class="campo_palpite" name="placar2C<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>>
+                                    <input type="number" id="placarC<?= $u->id_jogadores ?>" class="campo_palpite" name="placarC<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 0 ? $times[0] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][0]) ? "disabled value='{$palpitesC[$u->id_jogadores][0]}'" : "" ?>>
                                     <span class="x">x</span>
-                                    <input type="number" id="placarF<?= $u->id_jogadores ?>" class="campo_palpite" name="placar2F<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>>
+                                    <input type="number" id="placarF<?= $u->id_jogadores ?>" class="campo_palpite" name="placarF<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 1 ? $times[1] : "" ?>" <?= isset($palpitesC[$u->id_jogadores][1]) ? "disabled value='{$palpitesC[$u->id_jogadores][1]}'" : "" ?>>
                                 </td>
+                                <?php if (count($times) > 2) { ?>
 
-                            <?php } ?>
-                        </tr>
-                    <?php }} ?>
+                                    <td class="item_tabela">
+                                        <input type="number" id="placarC<?= $u->id_jogadores ?>" class="campo_palpite" name="placar2C<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 2 ? $times[2] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][0]) ? "disabled value='{$palpitesF[$u->id_jogadores][0]}'" : "" ?>>
+                                        <span class="x">x</span>
+                                        <input type="number" id="placarF<?= $u->id_jogadores ?>" class="campo_palpite" name="placar2F<?= $u->id_jogadores ?>" placeholder="<?= count($times) > 3 ? $times[3] : "" ?>" <?= isset($palpitesF[$u->id_jogadores][1]) ? "disabled value='{$palpitesF[$u->id_jogadores][1]}'" : "" ?>>
+                                    </td>
+
+                                <?php } ?>
+                            </tr>
+                    <?php }
+                    } ?>
                 </tbody>
             </table>
             <input type="submit" value="Palpitar" class="btn">

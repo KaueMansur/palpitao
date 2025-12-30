@@ -155,6 +155,63 @@ form#login{
     top: 15vh;
     border: 3px solid #000;
     display: none;
+    position: fixed;
+    z-index: 2;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+    color: lightblue;
+    overflow-y: scroll;
+}
+
+#regulamento_container h2{
+    font-size: 1.7em;
+    letter-spacing: 2px;
+}
+
+#regulamento_container h3{
+    font-size: 1.4em;
+}
+
+#regulamento_container h4, #regulamento_container p{
+    font-size: 1.2em;
+}
+
+.lista_regras{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ul_pontuacao{
+    display: flex;
+    flex-direction: column;
+}
+
+.ul_pontuacao li{
+    font-size: 1.3em;
+}
+
+.lista_premiacoes li{
+    list-style-type: none;
+    font-size: 1.2em;
+}
+
+.regras_exclusao{
+    font-size: 1.2em;
+}
+
+.assinatura{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.txt_destacado{
+    background-color: #F00;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
 }
 
 #logout{

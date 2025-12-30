@@ -12,6 +12,8 @@ const tituloBanir = document.getElementById("titulo_banir");
 
 const listaNegra = document.getElementById("lista_negra_container");
 
+const regulamento = document.getElementById("regulamento_container");
+
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
     navigator.clipboard.writeText(texto).then(() => {
@@ -85,4 +87,12 @@ function fecharListaNegra() {
 
 function abrirListaNegra() {
     listaNegra.style.display = "flex";
+}
+
+function abrirRegulamento() {
+    if(regulamento.style.display == "flex"){
+        regulamento.style.display = "none";
+    }else{
+        regulamento.style.display = "flex";
+    }
 }
