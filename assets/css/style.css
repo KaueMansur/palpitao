@@ -614,6 +614,17 @@ input[type=checkbox]:checked:after{
     background-color: #00f;
     left: 130px;
 }
+
+.btn_backup{
+    text-decoration: none;
+    color: #000;
+    background-color: #00f;
+    border-radius: 10px;
+    border: 2px solid #000;
+    padding: 10px 30px;
+    font-size: 1.2em;
+    width: fit-content;
+}
 /* 
 INSERT INTO jogadores(nome, pontos)
 VALUES('Daniel 1983', 45),

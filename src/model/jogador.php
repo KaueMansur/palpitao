@@ -137,15 +137,22 @@ class Jogador
         );
 
         $db->update(
-            "UPDATE jogadores SET titulo_de_posicao = 'Lanterna' WHERE pontos = (SELECT MIN(pontos) FROM jogadores)"
+            "UPDATE jogadores SET titulo_de_posicao = 'Lanterna' 
+            WHERE status = 1 AND pontos = (
+            SELECT min_pontos 
+            FROM (SELECT MIN(pontos) AS min_pontos FROM jogadores WHERE status = 1) AS temp);"
         );
 
         $db->update(
-            "UPDATE jogadores SET titulo_de_posicao = 'Líder' WHERE pontos = (SELECT MAX(pontos) FROM jogadores)"
+            "UPDATE jogadores SET titulo_de_posicao = 'Líder' 
+            WHERE status = 1 AND pontos = (
+            SELECT max_pontos 
+            FROM (SELECT MAX(pontos) AS max_pontos FROM jogadores WHERE status = 1) AS temp);"
         );
     }
 
-    public function getQuantidadeMesmaPosicao($posicao){
+    public function getQuantidadeMesmaPosicao($posicao)
+    {
         $db = new Database();
 
         return $db->select(
@@ -165,7 +172,8 @@ class Jogador
     //     );
     // }
 
-    public function banirjogador($idJogador){
+    public function banirjogador($idJogador)
+    {
         $db = new Database();
 
         $db->update(
@@ -173,7 +181,8 @@ class Jogador
         );
     }
 
-    public function getListaNegra(){
+    public function getListaNegra()
+    {
         $db = new Database();
 
         return $db->select(

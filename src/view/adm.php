@@ -116,7 +116,7 @@ if (isset($testeStatusJogo1[0])) {
 </head>
 
 <body class="page">
-
+    <!-- <a href="../../mysql/backup_datbase.php" style="font-size: 30pt;">Faser Backup Database</a> -->
     <button class="btn_inter_gremio" onclick="abrirRegulamento()">Regulamento</button>
     <a href="../controller/session_destroy.php" id="logout">Log out</a>
 
@@ -157,7 +157,7 @@ if (isset($testeStatusJogo1[0])) {
             <li>Taxa Adm: 25%</li>
         </ul>
         <h3 style="text-align: center;">OBS.: CASO HAJA EMPATE EM QUALQUER UMA DAS FAIXAS DE DE PREMIAÇÃO (DO 1º AO 5º LUGAR), O VALOR CORRESPONDENTE SERÁ DIVIDIDO EM PARTES IGUAIS ENTRE OS EMPATADOS.</h3>
-            <h3 class="txt_destacado">AVISOS IMPORTANTES</h3>
+        <h3 class="txt_destacado">AVISOS IMPORTANTES</h3>
         <ul class="lista_regras">
             <li>
                 <h4>Atualização da Tabela</h4>
@@ -186,6 +186,7 @@ if (isset($testeStatusJogo1[0])) {
     <form action="../controller/dividaController.php" method="post" id="tabela_form" class="forms">
         <h1 class="titulo_forms">Tabela</h1>
         <table id="tabela" class="tabela">
+            <a href="../../mysql/backup_db_<?= $numeroRodada[0]->{"MAX(id_rodada)"} ?>.sql" class="btn_backup btn">Fazer Backup</a>
             <?php if (isset($numeroRodada[0]->{"MAX(id_rodada)"})) { ?>
 
                 <h2 class="subtitulo_rodada">Rodada <?= $numeroRodada[0]->{"MAX(id_rodada)"} ?></h2>
@@ -291,6 +292,8 @@ if (isset($testeStatusJogo1[0])) {
 
                     if ($u->titulo_de_posicao == "Lanterna") {
                         echo "🔦";
+                    } elseif ($u->titulo_de_posicao == "Líder") {
+                        echo "👑";
                     }
                     echo "<br>";
                 }
@@ -318,6 +321,7 @@ if (isset($testeStatusJogo1[0])) {
             ⬇️ Desceu de posição na tabela</br>
             🚫 Não faz mais parte do PALPITÃO</br>
             💯 Acertou em cheio todos os jogos da rodada</br>
+            👑 Segue o líder!</br>
             🔦 Não precisa nem dizer né❓❓❓ 🤔 🤣🤣🤣
         </p>
     </form>
@@ -382,7 +386,7 @@ if (isset($testeStatusJogo1[0])) {
                     </div>
                 <?php } ?>
             </div>
-            <input type="submit" value="Finalizar rodada" class="btn">
+            <input type="submit" value="Finalizar rodada" class="btn" onclick="this.setAttibute('disabled', true)">
         </form>
 
     <?php } else { ?>
