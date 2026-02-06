@@ -15,6 +15,8 @@ const listaNaoPostaram = document.getElementById("lista_nao_postaram_container")
 
 const regulamento = document.getElementById("regulamento_container");
 
+const valorTotal = document.getElementById("valor_total");
+
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
     navigator.clipboard.writeText(texto).then(() => {
@@ -91,17 +93,30 @@ function abrirListaNegra() {
 }
 
 function abrirRegulamento() {
-    if(regulamento.style.display == "flex"){
+    if (regulamento.style.display == "flex") {
         regulamento.style.display = "none";
-    }else{
+    } else {
         regulamento.style.display = "flex";
     }
 }
 
-function abrirListaDosQueNaoPostaram(){
+function abrirListaDosQueNaoPostaram() {
     listaNaoPostaram.style.display = "flex";
 }
 
-function fecharLista(idLista){
+function fecharLista(idLista) {
     document.getElementById(idLista).style.display = "none"
 }
+
+let valorTotalTxt = valorTotal.textContent;
+let keyBtnValorTotal = 0;
+valorTotal.addEventListener("click", () => {
+    if (keyBtnValorTotal % 2 == 0) {
+        valorTotal.textContent = "";
+        valorTotal.style.width = "30px";
+    } else {
+        valorTotal.style.width = "250px";
+        valorTotal.textContent = valorTotalTxt;
+    }
+    keyBtnValorTotal++;
+})

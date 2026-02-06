@@ -430,7 +430,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
 
     <?php } ?>
 
-    <div class="valor_total">R$ <?= number_format($pagamento->calculaValorTotal()[0]->{"SUM(valor)"}, 2, ",") ?></div>
+    <div class="valor_total" id="valor_total">R$ <?= number_format($pagamento->calculaValorTotal()[0]->{"SUM(valor)"}, 2, ",") ?></div>
 
     <script src="../../assets/js/script.js"></script>
 </body>

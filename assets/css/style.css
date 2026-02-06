@@ -519,6 +519,7 @@ input[type=checkbox]:checked:after {
     height: 80px;
     border: 2px solid #000;
     border-radius: 20px;
+    overflow: hidden;
 }
 
 .btn_premios {
