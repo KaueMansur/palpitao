@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Passion+One:wght@400;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-*{
+* {
     margin: 0;
     bottom: 0;
     padding: 0;
@@ -8,18 +8,18 @@
     font-family: Lobster, sans-serif;
 }
 
-:root{
+:root {
     --cor-primaria: #EBEAFF;
     --cor-secundaria: #9694FF;
     --cor-terciaria: #3D3BF3;
     --cor-quarta: #FF2929;
 }
 
-html{
+html {
     background-color: var(--cor-primaria);
 }
 
-body#index{
+body#index {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +28,7 @@ body#index{
     font-family: Lobster, sans-serif;
 }
 
-h1{
+h1 {
     font-size: 3.5em;
     padding-bottom: 10px;
     text-align: center;
@@ -36,7 +36,7 @@ h1{
     margin-bottom: 40px;
 }
 
-.titulo_forms{
+.titulo_forms {
     color: var(--cor-quarta);
     font-size: 4em;
     text-decoration: underline;
@@ -45,7 +45,7 @@ h1{
     text-shadow: #000 1px 1px 1px;
 }
 
-.btn_banir{
+.btn_banir {
     background-color: #fff;
     border: 2px solid #000;
     border-radius: 5px;
@@ -59,15 +59,16 @@ h1{
     cursor: pointer;
 }
 
-.item_banir, #titulo_banir{
+.item_banir,
+#titulo_banir {
     display: none;
 }
 
-h2{
+h2 {
     font-size: 2.5em;
 }
 
-form#login{
+form#login {
     background-color: var(--cor-secundaria);
     padding: 30px;
     border-radius: 20px;
@@ -80,7 +81,7 @@ form#login{
     align-items: center;
 }
 
-.campos_container{
+.campos_container {
     background-color: var(--cor-terciaria);
     height: 60%;
     border-radius: 20px;
@@ -89,18 +90,18 @@ form#login{
     justify-content: space-evenly;
 }
 
-.campos_div{
+.campos_div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.campos_label{
+.campos_label {
     font-size: 1.8em;
     font-weight: bold;
 }
 
-.campos_campos{
+.campos_campos {
     width: 80%;
     font-size: 2em;
     border-radius: 10px;
@@ -110,7 +111,7 @@ form#login{
     font-family: Lobster, sans-serif;
 }
 
-.btn{
+.btn {
     background-color: var(--cor-quarta);
     font-size: 1.5em;
     border-radius: 20px;
@@ -125,16 +126,16 @@ form#login{
     transition: 0.4s;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #f00;
     color: #fff;
 }
 
-.comentario{
+.comentario {
     display: none;
 }
 
-.btn_inter_gremio{
+.btn_inter_gremio {
     position: absolute;
     left: 30px;
     top: 20px;
@@ -146,7 +147,7 @@ form#login{
     height: fit-content;
 }
 
-#regulamento_container{
+#regulamento_container {
     background-color: var(--cor-terciaria);
     border-radius: 20px;
     width: 55vw;
@@ -165,56 +166,57 @@ form#login{
     overflow-y: scroll;
 }
 
-#regulamento_container h2{
+#regulamento_container h2 {
     font-size: 1.7em;
     letter-spacing: 2px;
 }
 
-#regulamento_container h3{
+#regulamento_container h3 {
     font-size: 1.4em;
 }
 
-#regulamento_container h4, #regulamento_container p{
+#regulamento_container h4,
+#regulamento_container p {
     font-size: 1.2em;
 }
 
-.lista_regras{
+.lista_regras {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.ul_pontuacao{
+.ul_pontuacao {
     display: flex;
     flex-direction: column;
 }
 
-.ul_pontuacao li{
+.ul_pontuacao li {
     font-size: 1.3em;
 }
 
-.lista_premiacoes li{
+.lista_premiacoes li {
     list-style-type: none;
     font-size: 1.2em;
 }
 
-.regras_exclusao{
+.regras_exclusao {
     font-size: 1.2em;
 }
 
-.assinatura{
+.assinatura {
     font-size: 1.5em;
     font-weight: 600;
 }
 
-.txt_destacado{
+.txt_destacado {
     background-color: #F00;
     padding: 10px;
     width: 100%;
     text-align: center;
 }
 
-#logout{
+#logout {
     text-decoration: none;
     color: #000;
     font-size: 1.7em;
@@ -230,19 +232,20 @@ form#login{
     cursor: pointer;
 }
 
-#logout:hover, .btn_inter_gremio{
+#logout:hover,
+.btn_inter_gremio {
     background-color: #F00;
     color: #fff;
     border-color: #fff;
 }
 
-.btn_inter_gremio:hover{
+.btn_inter_gremio:hover {
     border: 2px solid black;
     background-color: var(--cor-terciaria);
     color: #000;
 }
 
-#iniciar_rodada_form{
+#iniciar_rodada_form {
     background-color: var(--cor-secundaria);
     border-radius: 20px;
     padding: 20px;
@@ -254,20 +257,20 @@ form#login{
     align-items: center;
 }
 
-.iniciar_rodada_linha{
+.iniciar_rodada_linha {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     /* align-items: center; */
 }
 
-.iniciar_rodada_item{
+.iniciar_rodada_item {
     display: flex;
     flex-direction: column;
     width: 40%;
 }
 
-.page{
+.page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -276,7 +279,7 @@ form#login{
     padding-bottom: 100px;
 }
 
-.iniciar_rodada_campo{
+.iniciar_rodada_campo {
     font-family: Lobster, sans-serif;
     font-size: 2em;
     padding: 5px;
@@ -285,13 +288,13 @@ form#login{
     background-color: var(--cor-terciaria);
 }
 
-.x{
+.x {
     font-size: 3em;
     font-family: sans-serif;
     font-weight: bold;
 }
 
-.forms{
+.forms {
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -302,7 +305,8 @@ form#login{
     width: 85vw;
 }
 
-#tabela, .tabela{
+#tabela,
+.tabela {
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
@@ -311,63 +315,63 @@ form#login{
     position: relative;
 }
 
-#th_premio{
+#th_premio {
     display: none;
 }
 
-
-.azul{
+.azul {
     background-color: #00f;
 }
 
-.vermelho{
+.vermelho {
     background-color: #F00;
 }
 
-.td_premio{
+.td_premio {
     display: none;
+    margin-top: 13.5px;
 }
 
-.titulo_tabela:nth-child(odd){
+.titulo_tabela:nth-child(odd) {
     background-color: #f00;
 }
 
-.titulo_tabela:nth-child(even){
+.titulo_tabela:nth-child(even) {
     background-color: #00f;
 }
 
-.titulo_tabela{
+.titulo_tabela {
     outline: 1px solid #000;
     font-size: 1.6em;
     padding: 10px;
     min-width: 50px;
 }
 
-.linha_tabela{
+.linha_tabela {
     height: 50px;
     outline: 1px solid #000;
 }
 
-.linha_tabela:nth-child(odd){
+.linha_tabela:nth-child(odd) {
     background-color: var(--cor-terciaria);
 }
 
-.linha_tabela:nth-child(even){
+.linha_tabela:nth-child(even) {
     background-color: var(--cor-quarta);
 }
 
-.item_tabela{
+.item_tabela {
     font-size: 1.3em;
     text-align: center;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
     position: relative;
     bottom: 10px;
 }
 
 
-input[type=checkbox]::before{
+input[type=checkbox]::before {
     content: "";
     display: inline-block;
     border-radius: 5px;
@@ -378,15 +382,15 @@ input[type=checkbox]::before{
     position: absolute;
 }
 
-input[type=checkbox]:checked:before{
+input[type=checkbox]:checked:before {
     background-color: #0f0;
 }
 
-input[type="checkbox"]:disabled::before{
+input[type="checkbox"]:disabled::before {
     background-color: rgb(22, 87, 22);
 }
 
-input[type=checkbox]:checked:after{
+input[type=checkbox]:checked:after {
     content: "";
     display: block;
     width: 5px;
@@ -401,7 +405,7 @@ input[type=checkbox]:checked:after{
     left: 12px;
 }
 
-.campo_palpite{
+.campo_palpite {
     font-size: 0.8em;
     width: 150px;
     height: 40px;
@@ -411,23 +415,23 @@ input[type=checkbox]:checked:after{
     background-color: #fff;
 }
 
-.campo_palpite[disabled]{
+.campo_palpite[disabled] {
     background-color: #0f0;
 }
 
-.big_font{
+.big_font {
     font-size: 1.3em;
     transform: translate(0);
     width: 130px;
 }
 
-.finalizar_rodadas_campos{
+.finalizar_rodadas_campos {
     display: flex;
     align-items: center;
     gap: 50px;
 }
 
-#container_finalizar_rodadas{
+#container_finalizar_rodadas {
     background-color: var(--cor-quarta);
     padding: 10px;
     border-radius: 10px;
@@ -440,7 +444,7 @@ input[type=checkbox]:checked:after{
 
 /* Manteve na mesma posição */
 
-.m{
+.m {
     background-color: #b39b9b;
     height: 30px;
     width: 30px;
@@ -451,8 +455,8 @@ input[type=checkbox]:checked:after{
 
 /* Desceu na tabela */
 
-.d{
-    
+.d {
+
     background-color: #f00;
     height: 20px;
     width: 10px;
@@ -461,7 +465,7 @@ input[type=checkbox]:checked:after{
     border: 1px solid #000;
 }
 
-.d::after{
+.d::after {
     content: "";
     display: inline-block;
     height: 15px;
@@ -474,7 +478,7 @@ input[type=checkbox]:checked:after{
 }
 
 /* Subiu na tabela */
-.s{
+.s {
     background-color: #0f0;
     height: 20px;
     width: 10px;
@@ -484,7 +488,7 @@ input[type=checkbox]:checked:after{
     transform: translateY(5px);
 }
 
-.s::after{
+.s::after {
     content: "";
     display: inline-block;
     height: 15px;
@@ -494,15 +498,15 @@ input[type=checkbox]:checked:after{
     border: 1px solid #000;
     border-radius: 2px;
     transform: rotate(135deg) translateY(10px) translateX(-4px);
-}   
-
-.subtitulo_rodada{
-    color: #fff;
-    font-size: 4em;
-    text-shadow: 2px 2px 5px #000;   
 }
 
-.valor_total{
+.subtitulo_rodada {
+    color: #fff;
+    font-size: 4em;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.valor_total {
     position: fixed;
     bottom: 20px;
     right: 50px;
@@ -517,16 +521,16 @@ input[type=checkbox]:checked:after{
     border-radius: 20px;
 }
 
-.btn_premios{
-    right: 130px;
+.btn_premios {
+    right: 260px;
     background-color: #f00;
 }
 
-#btn_habilitar_banimentos{
-    right: 200px;
+#btn_habilitar_banimentos {
+    right: 330px;
 }
 
-.btn_actions{
+.btn_actions {
     font-size: 2em;
     position: absolute;
     top: 400px;
@@ -541,12 +545,13 @@ input[type=checkbox]:checked:after{
     justify-content: center;
 }
 
-.btn_lista_negra{
+.btn_lista_negra {
     background-color: #423b3b;
     left: 200px;
 }
 
-.lista_negra_container{
+.lista_negra_container,
+#lista_nao_postaram_container {
     position: fixed;
     width: 60vw;
     height: 80vh;
@@ -564,14 +569,33 @@ input[type=checkbox]:checked:after{
     gap: 20px;
 }
 
-.lista_negra{
+.lista_nao_postaram {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.lista_nao_postaram li {
+    width: 50%;
+    background-color: #0f0;
+    border-radius: 10px;
+    font-size: 1.5em;
+    padding: 20px;
+    font-weight: 700;
+    text-align: center;
+    list-style-type: none;
+}
+
+.lista_negra {
     display: flex;
     flex-direction: column;
     width: 60%;
     gap: 10px;
 }
 
-.item_lista_negra{
+.item_lista_negra {
     list-style-type: none;
     font-size: 1.8em;
     letter-spacing: 10px;
@@ -584,7 +608,7 @@ input[type=checkbox]:checked:after{
     padding-left: 130px;
 }
 
-.btn_fechar{
+.btn_fechar {
     background-color: #FF2929;
     font-family: sans-serif;
     color: #fff;
@@ -602,7 +626,7 @@ input[type=checkbox]:checked:after{
     cursor: pointer;
 }
 
-#textoParaCopiar{
+#textoParaCopiar {
 
     /* visibility: hidden; */
     position: absolute;
@@ -610,21 +634,27 @@ input[type=checkbox]:checked:after{
     left: -1000px;
 }
 
-.btn_copiar{
+.btn_copiar {
     background-color: #00f;
     left: 130px;
 }
 
-.btn_backup{
+.btn_nao_postaram {
+    background-color: #fff;
+    left: 270px;
+}
+
+.btn_backup {
+    right: 130px;
     text-decoration: none;
     color: #000;
     background-color: #00f;
-    border-radius: 10px;
     border: 2px solid #000;
     padding: 10px 30px;
     font-size: 1.2em;
     width: fit-content;
 }
+
 /* 
 INSERT INTO jogadores(nome, pontos)
 VALUES('Daniel 1983', 45),

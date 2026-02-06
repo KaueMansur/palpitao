@@ -101,7 +101,7 @@ if (isset($testeStatusJogo1[0])) {
     }
 }
 
-
+$jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
 
 ?>
 
@@ -119,6 +119,17 @@ if (isset($testeStatusJogo1[0])) {
     <!-- <a href="../../mysql/backup_datbase.php" style="font-size: 30pt;">Faser Backup Database</a> -->
     <button class="btn_inter_gremio" onclick="abrirRegulamento()">Regulamento</button>
     <a href="../controller/session_destroy.php" id="logout">Log out</a>
+
+    <article id="lista_nao_postaram_container">
+        <button type="button" onclick="fecharLista('lista_nao_postaram_container')" class="btn_fechar">x</button>
+        <h2><span style="color: blue;">Lista Nã</span><span style="color: red;">o Postaram</span></h2>
+        <ul class="lista_nao_postaram">
+            <?php foreach ($jogadoresQueNaoPostaram as $j) {
+            ?>
+                <li><?= $j->nome ?></li>
+            <?php } ?>
+        </ul>
+    </article>
 
     <article id="regulamento_container">
         <h2>REGULAMENTO PALPITÃO DA DUPLA GRENAL 2026</h2>
@@ -186,15 +197,16 @@ if (isset($testeStatusJogo1[0])) {
     <form action="../controller/dividaController.php" method="post" id="tabela_form" class="forms">
         <h1 class="titulo_forms">Tabela</h1>
         <table id="tabela" class="tabela">
-            <a href="../../mysql/backup_db_<?= $numeroRodada[0]->{"MAX(id_rodada)"} ?>.sql" class="btn_backup btn">Fazer Backup</a>
             <?php if (isset($numeroRodada[0]->{"MAX(id_rodada)"})) { ?>
 
                 <h2 class="subtitulo_rodada">Rodada <?= $numeroRodada[0]->{"MAX(id_rodada)"} ?></h2>
-                <button type="button" class="btn_premios btn_actions" onclick="mostrarPremios()">🏆</button>
-                <button type="button" class="btn_banir btn_actions" id="btn_habilitar_banimentos" onclick="mostrarOpcaoBanir()">🚫</button>
+                <button type="button" class="btn_premios btn_actions" onclick="mostrarPremios()" title="Mostrar premiações">🏆</button>
+                <button type="button" class="btn_banir btn_actions" id="btn_habilitar_banimentos" onclick="mostrarOpcaoBanir()" title="Remover Jogador"><img src="../../assets/img/icones/block.png" height="40px" alt=""></button>
+                <a href="../../mysql/backup_db_<?= $numeroRodada[0]->{"MAX(id_rodada)"} ?>.sql" class="btn_actions btn btn_backup" title="Baixar banco de dados"><img src="../../assets/img/icones/download.png" height="40px" alt=""></a>
 
-                <button type="button" onclick="copiarTexto()" class="btn_actions btn_copiar"><img src="../../assets/img/icones/copiar.png" width="45px"></button>
-                <button type="button" onclick="abrirListaNegra()" class="btn_actions btn_lista_negra"><img src="../../assets/img/icones/lista-negra.png" width="45px"></button>
+                <button type="button" onclick="abrirListaDosQueNaoPostaram()" class="btn_actions btn_nao_postaram"><img src="../../assets/img/icones/lista-nao-postaram.png" width="45px" title="Jogadores que não postaram"></button>
+                <button type="button" onclick="copiarTexto()" class="btn_actions btn_copiar"><img src="../../assets/img/icones/copiar.png" width="45px" title="Copiar tabela para texto"></button>
+                <button type="button" onclick="abrirListaNegra()" class="btn_actions btn_lista_negra"><img src="../../assets/img/icones/lista-negra.png" width="45px" title="Mostrar jogadores removidos"></button>
 
                 <article class="lista_negra_container" id="lista_negra_container">
                     <button type="button" onclick="fecharListaNegra()" class="btn_fechar">x</button>
@@ -368,7 +380,6 @@ if (isset($testeStatusJogo1[0])) {
 
 
 
-
         <form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="forms">
             <h1 class="titulo_forms">Resultados <br>dos jogos</h1>
             <div id="container_finalizar_rodadas">
@@ -390,7 +401,6 @@ if (isset($testeStatusJogo1[0])) {
         </form>
 
     <?php } else { ?>
-
 
         <form action="../controller/iniciar_rodada_controller.php" method="post" id="iniciar_rodada_form">
             <div class="iniciar_rodada_linha">

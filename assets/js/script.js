@@ -11,6 +11,7 @@ const itemBanir = document.querySelectorAll(".item_banir");
 const tituloBanir = document.getElementById("titulo_banir");
 
 const listaNegra = document.getElementById("lista_negra_container");
+const listaNaoPostaram = document.getElementById("lista_nao_postaram_container");
 
 const regulamento = document.getElementById("regulamento_container");
 
@@ -95,4 +96,12 @@ function abrirRegulamento() {
     }else{
         regulamento.style.display = "flex";
     }
+}
+
+function abrirListaDosQueNaoPostaram(){
+    listaNaoPostaram.style.display = "flex";
+}
+
+function fecharLista(idLista){
+    document.getElementById(idLista).style.display = "none"
 }

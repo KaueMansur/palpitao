@@ -172,6 +172,21 @@ class Jogador
     //     );
     // }
 
+    public function getAllPlayersNotPosted()
+    {
+        $db = new Database();
+
+        return $db->select(
+            "SELECT jogadores.nome
+FROM jogadores 
+LEFT JOIN palpites ON jogadores.id_jogadores = palpites.id_jogadores 
+  AND palpites.id_jogos = 13 
+WHERE palpites.id_jogadores IS NULL 
+  AND jogadores.status = 1 
+ORDER BY jogadores.id_jogadores ASC;"
+        );
+    }
+
     public function banirjogador($idJogador)
     {
         $db = new Database();
