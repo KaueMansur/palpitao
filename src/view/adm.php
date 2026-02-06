@@ -294,7 +294,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                         echo "⏹️ ";
                     }
 
-                    $nome = strtoupper($u->nome);
+                    $nome = mb_strtoupper($u->nome);
 
                     echo $u->colocacao_atual . "⁰ " . $u->pontos . " P. $nome";
 
