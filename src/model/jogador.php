@@ -176,14 +176,31 @@ class Jogador
     {
         $db = new Database();
 
+        //         $idDoJogo = $db->select(
+        //             "SELECT MAX(id_jogo) FROM jogos_da_rodada WHERE id_rodada = (SELECT MAX(id_rodada) FROM jogos_da_rodada);"
+        //         );
+
+        //         return $db->select(
+        //             "SELECT jogadores.nome
+        // FROM jogadores 
+        // LEFT JOIN palpites ON jogadores.id_jogadores = palpites.id_jogadores 
+        //   AND palpites.id_jogos = {$idDoJogo[0]->MAX('id_jogo')}
+        // WHERE palpites.id_jogadores IS NULL 
+        //   AND jogadores.status = 1 
+        // ORDER BY jogadores.id_jogadores ASC;"
+        //         );
         return $db->select(
-            "SELECT jogadores.nome
-FROM jogadores 
-LEFT JOIN palpites ON jogadores.id_jogadores = palpites.id_jogadores 
-  AND palpites.id_jogos = 13 
-WHERE palpites.id_jogadores IS NULL 
-  AND jogadores.status = 1 
-ORDER BY jogadores.id_jogadores ASC;"
+            "SELECT j.nome
+    FROM jogadores j
+    LEFT JOIN palpites p ON j.id_jogadores = p.id_jogadores 
+        AND p.id_jogos = (
+            SELECT MAX(id_jogo) 
+            FROM jogos_da_rodada 
+            WHERE id_rodada = (SELECT MAX(id_rodada) FROM jogos_da_rodada)
+        )
+    WHERE p.id_jogadores IS NULL 
+      AND j.status = 1 
+    ORDER BY j.id_jogadores ASC;"
         );
     }
 
