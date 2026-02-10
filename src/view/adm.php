@@ -317,7 +317,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
             foreach ($list as $u) {
 
                 if ($u->status == 0) {
-                    $nome = strtoupper($u->nome);
+                    $nome = mb_strtoupper($u->nome);
 
                     echo "🚫 $nome";
                     echo "<br>";
