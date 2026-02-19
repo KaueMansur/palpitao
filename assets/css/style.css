@@ -656,6 +656,14 @@ input[type=checkbox]:checked:after {
     width: fit-content;
 }
 
+.campo_valor_pago{
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 100px;
+    text-align: center;
+    font-size: .8em;
+}
+
 /* 
 INSERT INTO jogadores(nome, pontos)
 VALUES('Daniel 1983', 45),

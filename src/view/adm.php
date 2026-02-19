@@ -267,7 +267,11 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                                                                 } else {
                                                                     echo "R$ " . number_format((($pagamento->calculaValorPosicao($porcentagemColocacao) / $jogador->getQuantidadeMesmaPosicao($u->colocacao_atual)[0]->{"COUNT(colocacao_atual)"}) + $pagamento->calculaValorPosicao(20)), 2, ",");
                                                                 }                        ?></td>
-                            <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value="<?= $u->id_jogadores ?>" <?= $u->divida == 0 ? "checked disabled" : "" ?>></label></td>
+                            <!-- <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value=" < //$u->id_jogadores >" < //$u->divida == 0 ? "checked disabled" : "" >></label></td> -->
+                            <td class="item_tabela">
+                                <input type="text" name="pagou[]" class="campo_valor_pago" value="R$ 0,00" <?= $u->divida == 0 ? "disabled" : "" ?> oninput="formatarMoeda(this)">
+                                <input type="hidden" name="id[]" value="<?= $u->id_jogadores ?>">
+                            </td>
                             <td class="item_tabela item_banir">
                                 <form action="../controller/banir_controller.php" method="post">
                                     <input type="hidden" name="id_jogador" value="<?= $u->id_jogadores ?>">
@@ -380,8 +384,8 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
 
 
 
-        <form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="forms">
-            <h1 class="titulo_forms">Resultados <br>dos jogos</h1>
+        <form action="../controller/finishRodadas.php" method="post" id="resultados_form" class="forms" onsubmit="this.querySelector('input[type=submit]').disabled = true;">
+            <h1 class=" titulo_forms">Resultados <br>dos jogos</h1>
             <div id="container_finalizar_rodadas">
 
                 <div class="finalizar_rodadas_campos">
@@ -397,7 +401,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                     </div>
                 <?php } ?>
             </div>
-            <input type="submit" value="Finalizar rodada" class="btn" onclick="this.setAttibute('disabled', true)">
+            <input type="submit" value="Finalizar rodada" class="btn">
         </form>
 
     <?php } else { ?>
@@ -433,6 +437,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
     <div class="valor_total" id="valor_total">R$ <?= number_format($pagamento->calculaValorTotal()[0]->{"SUM(valor)"}, 2, ",") ?></div>
 
     <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/mascaras.js"></script>
 </body>
 
 </html>
