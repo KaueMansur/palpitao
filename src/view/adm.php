@@ -118,7 +118,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
 <body class="page">
     <!-- <a href="../../mysql/backup_datbase.php" style="font-size: 30pt;">Faser Backup Database</a> -->
     <button class="btn_inter_gremio" onclick="abrirRegulamento()">Regulamento</button>
-    <button class="btn_musica" id="btn_musica"><img src="../../assets/img/icones/tocador-de-musica.png" alt="Ligar música"></button>
+    <button class="btn_musica" id="btn_musica"><img src="../../assets/img/icones/tocador-de-musica-desligado.png" id="img_musica" alt="Ligar música"></button>
     <audio src="../../assets/sounds/music/hino-gremio.mp3" id="hino_gremio" loop="true"></audio>
     <a href="../controller/session_destroy.php" id="logout">Log out</a>
 
@@ -435,7 +435,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
         </form>
 
     <?php } ?>
-
+    <button></button>
     <div class="valor_total" id="valor_total">R$ <?= number_format($pagamento->calculaValorTotal()[0]->{"SUM(valor)"}, 2, ",") ?></div>
 
     <script src="../../assets/js/script.js"></script>

@@ -19,6 +19,7 @@ const valorTotal = document.getElementById("valor_total");
 
 const btnMusica = document.getElementById("btn_musica");
 const hinoGremio = document.getElementById("hino_gremio");
+const imgMusica = document.getElementById("img_musica");
 
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
@@ -132,9 +133,11 @@ let keyMusica = 0;
 btnMusica.addEventListener("click", () => {
     if (keyMusica % 2 == 0) {
         hinoGremio.play();
+        imgMusica.setAttribute("src", "../../assets/img/icones/tocador-de-musica.png");
     } else {
         hinoGremio.pause();
         hinoGremio.currentTime = 0;
+        imgMusica.setAttribute("src", "../../assets/img/icones/tocador-de-musica-desligado.png");
     }
     keyMusica++;
 })
