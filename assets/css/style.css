@@ -520,6 +520,7 @@ input[type=checkbox]:checked:after {
     border: 2px solid #000;
     border-radius: 20px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .btn_premios {
@@ -664,55 +665,15 @@ input[type=checkbox]:checked:after {
     font-size: .8em;
 }
 
-/* 
-INSERT INTO jogadores(nome, pontos)
-VALUES('Daniel 1983', 45),
-('Perdigão', 39),
-('Léo', 38),
-('Édson Ortiz', 37),
-('Cláudio', 35),
-('David', 35),
-('Gabriel', 34),
-('Juliano', 34),
-('Gustavo Santi', 33),
-('Mex', 33),
-('Tafarel', 32),
-('Diomar', 31),
-('Zé', 31),
-('Felipe Paixão', 30),
-('Matheus Reis', 30),
-('Camilo', 29),
-('Dalvir', 29),
-('Fábio Macedo', 29),
-('Leco', 29),
-('Serginho', 29),
-('Bruno', 28),
-('Vini', 28),
-('Alemão', 27),
-('Kauê', 27),
-('Gustavo', 25),
-('Carlos', 24),
-('Chiquinho', 24),
-('Gulho', 24),
-('Luizinho', 24),
-('Valdoir', 24),
-('Vinicius', 24),
-('Viviane Lopes', 24),
-('André', 23),
-('Maninho', 23),
-('Paulinho', 23),
-('Chico', 22),
-('Dione', 22),
-('Fábio', 22),
-('Felipe Pinheiro', 22),
-('Maurício', 22),
-('Diorgy', 21),
-('Lucas Mazin', 21),
-('Rodolfo', 21),
-('Xande', 21),
-('Chulapa458', 20),
-('Didi', 20),
-('Derna', 20),
-('Mano', 19),
-('Fernando', 18),
-('Pancada', 14) */
+.btn_musica{
+    border: none;
+    position: absolute;
+    top: 35px;
+    right: 160px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.btn_musica:hover{
+    transform: scale(1.1);
+}

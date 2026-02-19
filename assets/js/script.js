@@ -17,6 +17,9 @@ const regulamento = document.getElementById("regulamento_container");
 
 const valorTotal = document.getElementById("valor_total");
 
+const btnMusica = document.getElementById("btn_musica");
+const hinoGremio = document.getElementById("hino_gremio");
+
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
     navigator.clipboard.writeText(texto).then(() => {
@@ -25,11 +28,11 @@ function copiarTexto() {
         console.error('Erro ao copiar: ', err); // Tratamento de erro
     });
 }
-
+let keyPremios = 0;
 function mostrarPremios() {
     // console.log(tabela)
     // console.log(thPremio)
-    if (thPremio.style.display == "none") {
+    if (keyPremios % 2 == 0) {
 
         thPremio.style.display = "block";
 
@@ -67,10 +70,12 @@ function mostrarPremios() {
         document.getElementById("other_th").remove();
         document.getElementById("othert_th").remove();
     }
+    keyPremios++;
 }
 
+let keyBanir = 0;
 function mostrarOpcaoBanir() {
-    if (tituloBanir.style.display == "none") {
+    if (keyBanir % 2 == 0) {
         //habilitar
         tituloBanir.style.display = "table-cell";
         itemBanir.forEach(item => {
@@ -82,6 +87,8 @@ function mostrarOpcaoBanir() {
             item.style.display = "none";
         });
     }
+
+    keyBanir++;
 }
 
 function fecharListaNegra() {
@@ -119,4 +126,15 @@ valorTotal.addEventListener("click", () => {
         valorTotal.textContent = valorTotalTxt;
     }
     keyBtnValorTotal++;
+})
+
+let keyMusica = 0;
+btnMusica.addEventListener("click", () => {
+    if (keyMusica % 2 == 0) {
+        hinoGremio.play();
+    } else {
+        hinoGremio.pause();
+        hinoGremio.currentTime = 0;
+    }
+    keyMusica++;
 })

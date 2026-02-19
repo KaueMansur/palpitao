@@ -66,7 +66,7 @@ class Jogador
         $db = new Database();
 
         return $db->select(
-            "SELECT * FROM jogadores ORDER BY nome ASC"
+            "SELECT * FROM jogadores WHERE status = 1 ORDER BY nome ASC"
         );
     }
 
@@ -159,36 +159,11 @@ class Jogador
             "SELECT COUNT(colocacao_atual) FROM jogadores WHERE colocacao_atual = $posicao"
         );
     }
-    // function palpitar($golsDaCasaJogo1, $golsForaJogo1, $golsDaCasaJogo2, $golsForaJogo2){
-    //     $palpiteJogo1 = new Palpite($golsDaCasaJogo1, $golsForaJogo1);
-    //     $palpiteJogo2 = new Palpite($golsDaCasaJogo2, $golsForaJogo2);
-
-    //     $this->palpites = [$palpiteJogo1, $palpiteJogo2];
-
-    //     $db = new Database();
-
-    //     $db-> insert(
-    //         "INSERT INTO palpites(placar, situacao_da_casa)"
-    //     );
-    // }
 
     public function getAllPlayersNotPosted()
     {
         $db = new Database();
 
-        //         $idDoJogo = $db->select(
-        //             "SELECT MAX(id_jogo) FROM jogos_da_rodada WHERE id_rodada = (SELECT MAX(id_rodada) FROM jogos_da_rodada);"
-        //         );
-
-        //         return $db->select(
-        //             "SELECT jogadores.nome
-        // FROM jogadores 
-        // LEFT JOIN palpites ON jogadores.id_jogadores = palpites.id_jogadores 
-        //   AND palpites.id_jogos = {$idDoJogo[0]->MAX('id_jogo')}
-        // WHERE palpites.id_jogadores IS NULL 
-        //   AND jogadores.status = 1 
-        // ORDER BY jogadores.id_jogadores ASC;"
-        //         );
         return $db->select(
             "SELECT j.nome
     FROM jogadores j
