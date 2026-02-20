@@ -19,6 +19,8 @@ $db = new Database();
 $list = $jogador->getAllUsers();
 $listPalpites = $jogador->getAllPlayers();
 
+$historicoPagamentos = $pagamento->getHistoricoPagamentos();
+
 $numeroRodada = $db->select("SELECT MAX(id_rodada) FROM jogos_da_rodada");
 
 $testeStatusJogo1 = $db->select("SELECT time_casa, time_fora FROM jogos_da_rodada WHERE status = 'Em andamento' and numero_do_jogo = 1");
@@ -435,7 +437,26 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
         </form>
 
     <?php } ?>
-    <button></button>
+    <article id="historico_pagamentos_container">
+        <h2><span style="color: blue;">Histórico d</span><span style="color: red;">e pagamentos</span></h2>
+        <ul class="lista_pagamentos">
+            <?php 
+            foreach ($historicoPagamentos as $pagamentos) {
+            ?>
+                <li class="item_pagamento">
+                    <div class="item_pagamento_container">
+                        <p class="info_pagamento"><?= $pagamentos->nome ?></p>
+                        <p class="info_pagamento">R$ <?= str_replace(".", ",", number_format($pagamentos->valor, 2)) ?></p>
+                    </div>
+                    <div class="item_pagamento_container">
+                        <p class="info_pagamento"><?= $pagamentos->hora ?></p>
+                        <p class="info_pagamento"><?= date("d/m/Y", strtotime($pagamentos->data_pagamento)); ?></p>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+    </article>
+    <button class="btn_historico_pagamentos" id="btn_historico_pagamentos"><img src="../../assets/img/icones/bolsa-de-dinheiro.png" alt="Ver histórico de pagamentos"></button>
     <div class="valor_total" id="valor_total">R$ <?= number_format($pagamento->calculaValorTotal()[0]->{"SUM(valor)"}, 2, ",") ?></div>
 
     <script src="../../assets/js/script.js"></script>

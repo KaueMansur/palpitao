@@ -21,6 +21,9 @@ const btnMusica = document.getElementById("btn_musica");
 const hinoGremio = document.getElementById("hino_gremio");
 const imgMusica = document.getElementById("img_musica");
 
+const btnHistoricoPagamentos = document.getElementById("btn_historico_pagamentos");
+const historicoPagamentosContainer = document.getElementById("historico_pagamentos_container");
+
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
     navigator.clipboard.writeText(texto).then(() => {
@@ -140,4 +143,14 @@ btnMusica.addEventListener("click", () => {
         imgMusica.setAttribute("src", "../../assets/img/icones/tocador-de-musica-desligado.png");
     }
     keyMusica++;
+})
+
+let keyHistoricoPagamento = 0;
+btnHistoricoPagamentos.addEventListener("click", () => {
+    if (keyHistoricoPagamento % 2 == 0) {
+        historicoPagamentosContainer.style.display = "flex";
+    } else{
+        historicoPagamentosContainer.style.display = "none";
+    }
+    keyHistoricoPagamento++;
 })
