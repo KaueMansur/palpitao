@@ -89,11 +89,36 @@ function mostrarOpcaoBanir() {
         itemBanir.forEach(item => {
             item.style.display = "flex";
         });
+
+        const newTh = document.createElement("th");
+        const otherTh = document.createElement("th");
+        const othertTh = document.createElement("th");
+
+        newTh.setAttribute("id", "new_ths")
+        otherTh.setAttribute("id", "other_ths")
+        othertTh.setAttribute("id", "othert_ths")
+
+        newTh.classList.add("titulo_tabela");
+        otherTh.classList.add("titulo_tabela");
+        othertTh.classList.add("titulo_tabela");
+
+        newTh.style.display = "none";
+        otherTh.style.display = "none";
+        othertTh.style.display = "none";
+
+        thDivida.insertAdjacentElement("afterend", newTh)
+        newTh.insertAdjacentElement("afterend", otherTh)
+        otherTh.insertAdjacentElement("afterend", othertTh)
+
     } else {
         tituloBanir.style.display = "none";
         itemBanir.forEach(item => {
             item.style.display = "none";
         });
+
+        document.getElementById("new_ths").remove();
+        document.getElementById("other_ths").remove();
+        document.getElementById("othert_ths").remove();
     }
 
     keyBanir++;

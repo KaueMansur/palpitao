@@ -37,6 +37,14 @@ if ($_POST["pagou"] != null && $_POST["id"] != null) {
             "UPDATE jogadores SET divida = divida - $valoresFormatados[$i] WHERE id_jogadores = $ids[$i]"
         );
     }
+
+    $numeroRodada = $db->select("SELECT MAX(id_rodada) FROM jogos_da_rodada");
+
+    unlink("../../mysql/backup_db_".$numeroRodada[0]->{"MAX(id_rodada)"}.".sql");
+
+    $command = 'C:\Users\User\Desktop\xamp\htdocs\sistemaPalpitao\xampp\mysql\bin\mysqldump.exe -h localhost -u root palpitao_db > ..\..\mysql\backup_db_' . $numeroRodada[0]->{"MAX(id_rodada)"}.'.sql';
+
+    system($command, $output);
 }
 
 
