@@ -60,7 +60,7 @@ h1 {
 }
 
 .item_banir,
-#titulo_banir {
+#titulo_banir, .item_taxa, #titulo_taxa {
     display: none;
 }
 
@@ -739,4 +739,31 @@ input[type=checkbox]:checked:after {
 
 .info_pagamento{
     font-size: 1.5em;
+}
+
+.btn_mostrar_taxa{
+    left: 340px;
+    background-color: rgb(113, 228, 113);
+}
+
+.btn_taxa{
+    background-color: rgb(139, 219, 139);
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 23px;
+    margin-top: 4px;
+}
+
+.btn_taxa:hover{
+    background-color: rgb(145, 230, 170)
+}
+
+.item_taxa form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

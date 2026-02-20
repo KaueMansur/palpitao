@@ -70,6 +70,14 @@ class Jogador
         );
     }
 
+    function getJogadoresQuePagaramTaxa(){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT * FROM jogadores WHERE taxa = 1"
+        );
+    }
+
     function definirPosicao()
     {
         $db = new Database();

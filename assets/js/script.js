@@ -24,6 +24,10 @@ const imgMusica = document.getElementById("img_musica");
 const btnHistoricoPagamentos = document.getElementById("btn_historico_pagamentos");
 const historicoPagamentosContainer = document.getElementById("historico_pagamentos_container");
 
+const btnMostrarTaxa = document.getElementById("btn_mostrar_taxa");
+const tituloTaxa = document.getElementById("titulo_taxa");
+const itemTaxa = document.querySelectorAll(".item_taxa");
+
 function copiarTexto() {
     const texto = document.getElementById('textoParaCopiar').innerText; // Pega o texto do elemento
     navigator.clipboard.writeText(texto).then(() => {
@@ -95,6 +99,22 @@ function mostrarOpcaoBanir() {
     keyBanir++;
 }
 
+let keyTaxa = 0;
+function mostrarTaxa() {
+    if (keyTaxa % 2 == 0) {
+        tituloTaxa.style.display = "table-cell";
+        itemTaxa.forEach(item => {
+            item.style.display = "flex";
+        });
+    } else {
+        tituloTaxa.style.display = "none";
+        itemTaxa.forEach(item => {
+            item.style.display = "none";
+        });
+    }
+    keyTaxa++;
+}
+
 function fecharListaNegra() {
     listaNegra.style.display = "none";
 }
@@ -149,7 +169,7 @@ let keyHistoricoPagamento = 0;
 btnHistoricoPagamentos.addEventListener("click", () => {
     if (keyHistoricoPagamento % 2 == 0) {
         historicoPagamentosContainer.style.display = "flex";
-    } else{
+    } else {
         historicoPagamentosContainer.style.display = "none";
     }
     keyHistoricoPagamento++;

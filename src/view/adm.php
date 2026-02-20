@@ -21,6 +21,8 @@ $listPalpites = $jogador->getAllPlayers();
 
 $historicoPagamentos = $pagamento->getHistoricoPagamentos();
 
+// $jogadoresTaxados = $jogador->getJogadoresQuePagaramTaxa();
+
 $numeroRodada = $db->select("SELECT MAX(id_rodada) FROM jogos_da_rodada");
 
 $testeStatusJogo1 = $db->select("SELECT time_casa, time_fora FROM jogos_da_rodada WHERE status = 'Em andamento' and numero_do_jogo = 1");
@@ -122,7 +124,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
     <button class="btn_inter_gremio" onclick="abrirRegulamento()">Regulamento</button>
     <button class="btn_musica" id="btn_musica"><img src="../../assets/img/icones/tocador-de-musica-desligado.png" id="img_musica" alt="Ligar música"></button>
     <audio src="../../assets/sounds/music/hino-gremio.mp3" id="hino_gremio" loop="true"></audio>
-    <a href="../controller/session_destroy.php" id="logout">Log out</a>
+    <a href="../controller/session_destroy.php" id="logout">Sair</a>
 
     <article id="lista_nao_postaram_container">
         <button type="button" onclick="fecharLista('lista_nao_postaram_container')" class="btn_fechar">x</button>
@@ -208,6 +210,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                 <button type="button" class="btn_banir btn_actions" id="btn_habilitar_banimentos" onclick="mostrarOpcaoBanir()" title="Remover Jogador"><img src="../../assets/img/icones/block.png" height="40px" alt=""></button>
                 <a href="../../mysql/backup_db_<?= $numeroRodada[0]->{"MAX(id_rodada)"} ?>.sql" class="btn_actions btn btn_backup" title="Baixar banco de dados"><img src="../../assets/img/icones/download.png" height="40px" alt=""></a>
 
+                <button type="button" class="btn_mostrar_taxa btn_actions" id="btn_mostrar_taxa" onclick="mostrarTaxa()" title="Mostrar premiações"><img src="../../assets/img/icones/taxa.png" alt=""></button>
                 <button type="button" onclick="abrirListaDosQueNaoPostaram()" class="btn_actions btn_nao_postaram"><img src="../../assets/img/icones/lista-nao-postaram.png" width="45px" title="Jogadores que não postaram"></button>
                 <button type="button" onclick="copiarTexto()" class="btn_actions btn_copiar"><img src="../../assets/img/icones/copiar.png" width="45px" title="Copiar tabela para texto"></button>
                 <button type="button" onclick="abrirListaNegra()" class="btn_actions btn_lista_negra"><img src="../../assets/img/icones/lista-negra.png" width="45px" title="Mostrar jogadores removidos"></button>
@@ -237,6 +240,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                     <th class="titulo_tabela" id="th_premio">Prêmio</th>
                     <th class="titulo_tabela">Pagou?</th>
                     <th class="titulo_tabela" id="titulo_banir"></th>
+                    <th class="titulo_tabela" id="titulo_taxa">Taxa</th>
                 </tr>
             </thead>
             <tbody id="corpo_tabela">
@@ -282,9 +286,21 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                                     <input type="submit" class="btn_banir" value="🚫">
                                 </form>
                             </td>
+                            <td class="item_tabela item_taxa">
+                                <form action="../controller/pagar_taxa_controller.php" method="post">
+                                    <input type="hidden" name="id_jogador" value="<?= $u->id_jogadores ?>">
+                                    <?php if ($u->taxa == 1) { ?>
+                                        <input type="submit" class="btn_taxa" value="%" disabled style="background-color: #F00; cursor: auto">
+                                    <?php } else { ?>
+                                        <input type="submit" class="btn_taxa" value="%">
+                                <?php }
+                                } ?>
+                                </form>
+                            </td>
                         </tr>
-                <?php }
-                } ?>
+                    <?php }
+                //} 
+                    ?>
             </tbody>
         </table>
         <input type="submit" value="Atualizar dívidas" class="btn">
@@ -440,7 +456,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
     <article id="historico_pagamentos_container">
         <h2><span style="color: blue;">Histórico d</span><span style="color: red;">e pagamentos</span></h2>
         <ul class="lista_pagamentos">
-            <?php 
+            <?php
             foreach ($historicoPagamentos as $pagamentos) {
             ?>
                 <li class="item_pagamento">
