@@ -210,7 +210,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                 <button type="button" class="btn_banir btn_actions" id="btn_habilitar_banimentos" onclick="mostrarOpcaoBanir()" title="Remover Jogador"><img src="../../assets/img/icones/block.png" height="40px" alt=""></button>
                 <a href="../../mysql/backup_db_<?= $numeroRodada[0]->{"MAX(id_rodada)"} ?>.sql" class="btn_actions btn btn_backup" title="Baixar banco de dados"><img src="../../assets/img/icones/download.png" height="40px" alt=""></a>
 
-                <button type="button" class="btn_mostrar_taxa btn_actions" id="btn_mostrar_taxa" onclick="mostrarTaxa()" title="Mostrar premiações"><img src="../../assets/img/icones/taxa.png" alt=""></button>
+                <button type="button" class="btn_mostrar_taxa btn_actions" id="btn_mostrar_taxa" onclick="mostrarTaxa()" title="Taxas pagas"><img src="../../assets/img/icones/taxa.png" alt=""></button>
                 <button type="button" onclick="abrirListaDosQueNaoPostaram()" class="btn_actions btn_nao_postaram"><img src="../../assets/img/icones/lista-nao-postaram.png" width="45px" title="Jogadores que não postaram"></button>
                 <button type="button" onclick="copiarTexto()" class="btn_actions btn_copiar"><img src="../../assets/img/icones/copiar.png" width="45px" title="Copiar tabela para texto"></button>
                 <button type="button" onclick="abrirListaNegra()" class="btn_actions btn_lista_negra"><img src="../../assets/img/icones/lista-negra.png" width="45px" title="Mostrar jogadores removidos"></button>
@@ -238,7 +238,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                     <th style="display: none;" class="titulo_tabela"></th>
                     <!-- <th style="display: none;" class="titulo_tabela"></th> -->
                     <th class="titulo_tabela" id="th_premio">Prêmio</th>
-                    <th class="titulo_tabela">Pagou?</th>
+                    <th class="titulo_tabela" id="th_pagou">Pagou?</th>
                     <th class="titulo_tabela" id="titulo_banir"></th>
                     <th class="titulo_tabela" id="titulo_taxa">Taxa</th>
                 </tr>
@@ -472,7 +472,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
             <?php } ?>
         </ul>
     </article>
-    <button class="btn_historico_pagamentos" id="btn_historico_pagamentos"><img src="../../assets/img/icones/bolsa-de-dinheiro.png" alt="Ver histórico de pagamentos"></button>
+    <button class="btn_historico_pagamentos" id="btn_historico_pagamentos" title="Ver histórico de pagamentos"><img src="../../assets/img/icones/bolsa-de-dinheiro.png" alt="Ver histórico de pagamentos"></button>
     <div class="valor_total" id="valor_total">R$ <?= number_format($pagamento->calculaValorTotal()[0]->{"SUM(valor)"}, 2, ",") ?></div>
 
     <script src="../../assets/js/script.js"></script>

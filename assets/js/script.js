@@ -4,6 +4,7 @@ const thPremio = document.getElementById("th_premio");
 const tdPremio = document.querySelectorAll(".td_premio");
 
 const thDivida = document.getElementById("th_divida");
+const thPagou = document.getElementById("th_pagou");
 
 const tabela = document.getElementById("cabeca_tabela");
 
@@ -89,36 +90,13 @@ function mostrarOpcaoBanir() {
         itemBanir.forEach(item => {
             item.style.display = "flex";
         });
-
-        const newTh = document.createElement("th");
-        const otherTh = document.createElement("th");
-        const othertTh = document.createElement("th");
-
-        newTh.setAttribute("id", "new_ths")
-        otherTh.setAttribute("id", "other_ths")
-        othertTh.setAttribute("id", "othert_ths")
-
-        newTh.classList.add("titulo_tabela");
-        otherTh.classList.add("titulo_tabela");
-        othertTh.classList.add("titulo_tabela");
-
-        newTh.style.display = "none";
-        otherTh.style.display = "none";
-        othertTh.style.display = "none";
-
-        thDivida.insertAdjacentElement("afterend", newTh)
-        newTh.insertAdjacentElement("afterend", otherTh)
-        otherTh.insertAdjacentElement("afterend", othertTh)
-
     } else {
         tituloBanir.style.display = "none";
         itemBanir.forEach(item => {
             item.style.display = "none";
         });
 
-        document.getElementById("new_ths").remove();
-        document.getElementById("other_ths").remove();
-        document.getElementById("othert_ths").remove();
+        // document.getElementById("othert_ths").remove();
     }
 
     keyBanir++;
@@ -131,11 +109,37 @@ function mostrarTaxa() {
         itemTaxa.forEach(item => {
             item.style.display = "flex";
         });
+
+        const newThs = document.createElement("th");
+        const otherThs = document.createElement("th");
+        const othertThs = document.createElement("th");
+
+        newThs.setAttribute("id", "new_ths")
+        otherThs.setAttribute("id", "other_ths")
+        othertThs.setAttribute("id", "othert_ths")
+
+        newThs.classList.add("titulo_tabela");
+        otherThs.classList.add("titulo_tabela");
+        othertThs.classList.add("titulo_tabela");
+
+        newThs.style.display = "none";
+        otherThs.style.display = "none";
+        othertThs.style.display = "none";
+
+        if(keyBanir % 2 == 0){
+            thPagou.insertAdjacentElement("afterend", newThs);
+        } else{
+            tituloBanir.insertAdjacentElement("afterend", newThs);
+        }
+        newThs.insertAdjacentElement("afterend", otherThs);
+        otherThs.insertAdjacentElement("afterend", othertThs);
     } else {
         tituloTaxa.style.display = "none";
         itemTaxa.forEach(item => {
             item.style.display = "none";
         });
+        document.getElementById("new_ths").remove();
+        document.getElementById("other_ths").remove();
     }
     keyTaxa++;
 }
