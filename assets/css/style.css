@@ -743,11 +743,11 @@ input[type=checkbox]:checked:after {
 
 .btn_mostrar_taxa{
     left: 340px;
-    background-color: rgb(113, 228, 113);
+    background-color: #71e471;
 }
 
 .btn_taxa{
-    background-color: rgb(139, 219, 139);
+    background-color: #f00;
     width: 40px;
     height: 40px;
     border-radius: 5px;
@@ -758,7 +758,7 @@ input[type=checkbox]:checked:after {
 }
 
 .btn_taxa:hover{
-    background-color: rgb(145, 230, 170)
+    background-color: #e44444;
 }
 
 .item_taxa form{

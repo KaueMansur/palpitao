@@ -290,7 +290,7 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                                 <form action="../controller/pagar_taxa_controller.php" method="post">
                                     <input type="hidden" name="id_jogador" value="<?= $u->id_jogadores ?>">
                                     <?php if ($u->taxa == 1) { ?>
-                                        <input type="submit" class="btn_taxa" value="%" disabled style="background-color: #F00; cursor: auto">
+                                        <input type="submit" class="btn_taxa" value="%" disabled style="background-color: #8bdb8b; cursor: auto">
                                     <?php } else { ?>
                                         <input type="submit" class="btn_taxa" value="%">
                                 <?php }
