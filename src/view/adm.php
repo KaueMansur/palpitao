@@ -277,8 +277,16 @@ $jogadoresQueNaoPostaram = $jogador->getAllPlayersNotPosted();
                                                                 }                        ?></td>
                             <!-- <td class="item_tabela"><label for=""><input type="checkbox" name="pagou[]" value=" < //$u->id_jogadores >" < //$u->divida == 0 ? "checked disabled" : "" >></label></td> -->
                             <td class="item_tabela">
-                                <input type="text" name="pagou[]" class="campo_valor_pago" value="R$ 0,00" <?= $u->divida == 0 ? "disabled" : "" ?> oninput="formatarMoeda(this)">
-                                <input type="hidden" name="id[]" value="<?= $u->id_jogadores ?>">
+                                <?php if ($u->divida < .01) {
+                                ?>
+                                    <input type="text" class="campo_valor_pago" value="R$ 0,00" disabled>
+                                    <input type="hidden" name="pagou[]" value="R$ 0,00">
+                                    <input type="hidden" name="id[]" value="<?= $u->id_jogadores ?>">
+                                <?php } else {
+                                ?>
+                                    <input type="text" name="pagou[]" class="campo_valor_pago" value="R$ 0,00" oninput="formatarMoeda(this)" onclick="this.setSelectionRange(this.value.length, this.value.length);">
+                                    <input type="hidden" name="id[]" value="<?= $u->id_jogadores ?>">
+                                <?php } ?>
                             </td>
                             <td class="item_tabela item_banir">
                                 <form action="../controller/banir_controller.php" method="post">

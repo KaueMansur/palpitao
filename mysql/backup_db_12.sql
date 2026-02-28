@@ -48,7 +48,7 @@ CREATE TABLE `jogadores` (
 
 LOCK TABLES `jogadores` WRITE;
 /*!40000 ALTER TABLE `jogadores` DISABLE KEYS */;
-INSERT INTO `jogadores` VALUES (1,'Kauê','40bd001563085fc35165329ea1ff5c5ecbdbbeef',NULL,18,4,4,'s',1,7,NULL,16.5,0.5,1,1),(2,'Luizinho',NULL,NULL,15,7,1,'m',1,7,NULL,17,0,1,1),(3,'Bruno',NULL,NULL,17,5,1,'m',0,5,NULL,16.5,0,1,1),(4,'Derna',NULL,NULL,14,8,1,'m',0,8,NULL,17.5,0,1,0),(5,'Léo',NULL,NULL,16,6,4,'s',0,9,NULL,17.5,0.5,1,0),(6,'Juliano',NULL,NULL,19,3,4,'s',0,6,NULL,16,0.5,1,0),(7,'Édson Ortiz',NULL,NULL,17,5,4,'s',0,8,NULL,17,0.5,1,0),(8,'Serginho',NULL,NULL,15,7,1,'m',0,7,NULL,18,0,1,0),(9,'Felipe Paixão',NULL,NULL,20,2,1,'m',0,2,NULL,15.5,0,1,0),(10,'Gustavo Santiago',NULL,NULL,18,4,1,'m',0,4,NULL,16,0,1,0),(11,'Tafarel',NULL,NULL,11,11,3,'m',0,11,NULL,19,0.5,1,0),(12,'Perdigão',NULL,NULL,16,6,4,'s',0,9,NULL,17,0.5,1,0),(13,'Maninho',NULL,NULL,16,6,1,'m',0,6,NULL,17,0,1,0),(14,'André',NULL,NULL,13,9,0,'d',0,8,NULL,18,0,1,0),(15,'Dalvir',NULL,NULL,18,4,1,'m',0,4,NULL,16,0,1,0),(16,'Camilo',NULL,NULL,18,4,1,'m',0,4,NULL,16,0,1,0),(17,'Maurício',NULL,NULL,15,7,1,'m',0,7,NULL,17,0,1,0),(18,'Paulinho',NULL,NULL,19,3,1,'m',0,3,NULL,15.5,0,1,0),(19,'Diomar',NULL,NULL,19,3,3,'s',0,5,NULL,16,0.5,1,0),(20,'Zé',NULL,NULL,19,3,1,'m',0,3,NULL,15.5,0,1,0),(21,'Alemão',NULL,NULL,15,7,1,'m',0,7,NULL,17,0,1,0),(22,'Didi',NULL,NULL,17,5,1,'m',0,5,NULL,17,0,1,0),(23,'Xande',NULL,NULL,12,10,0,'d',0,9,NULL,18,0,0,0),(24,'Chiquinho',NULL,NULL,16,6,1,'m',0,6,NULL,17,0,1,0),(25,'Fábio Macedo',NULL,NULL,0,15,0,'d',0,13,NULL,24,0,0,0),(26,'Fábio',NULL,NULL,13,9,1,'m',0,9,NULL,17.5,0,1,0),(27,'Mano',NULL,NULL,28,1,4,'m',0,1,'Líder',12.5,0.5,1,0),(28,'Pancada Boxer',NULL,NULL,9,13,0,'d',0,10,'Lanterna',20,0,1,0),(29,'Edson',NULL,NULL,18,4,1,'m',0,4,NULL,16.5,0,1,0),(30,'Ailton',NULL,NULL,15,7,0,'d',0,6,NULL,17,0,1,0),(31,'Lucas Mazin',NULL,NULL,17,5,1,'m',0,5,NULL,17,0,1,0),(32,'Gabriel Dornelles',NULL,NULL,19,3,1,'m',0,3,NULL,15.5,0,1,0),(33,'Juliano Tondim',NULL,NULL,18,4,4,'s',0,7,NULL,16.5,0.5,1,0),(34,'Jonas',NULL,NULL,14,8,2,'s',0,9,NULL,17.5,0,1,0),(35,'Chico',NULL,NULL,9,13,1,'d',0,11,'Lanterna',19.5,0,1,0),(36,'Yuri Ismael',NULL,NULL,10,12,1,'d',0,10,NULL,17,0,1,0),(37,'Rafael',NULL,NULL,4,14,0,'d',0,12,NULL,22,0,0,0),(38,'Ederson',NULL,NULL,0,15,0,'d',0,13,NULL,24,0,0,0);
+INSERT INTO `jogadores` VALUES (1,'Kauê','40bd001563085fc35165329ea1ff5c5ecbdbbeef',NULL,18,4,4,'s',1,7,NULL,0,0.5,1,1),(2,'Luizinho',NULL,NULL,15,7,1,'m',1,7,NULL,-4,0,1,1),(3,'Bruno',NULL,NULL,17,5,1,'m',0,5,NULL,3.5,0,1,1),(4,'Derna',NULL,NULL,14,8,1,'m',0,8,NULL,11.5,0,1,0),(5,'Léo',NULL,NULL,16,6,4,'s',0,9,NULL,17.5,0.5,1,0),(6,'Juliano',NULL,NULL,19,3,4,'s',0,6,NULL,16,0.5,1,0),(7,'Édson Ortiz',NULL,NULL,17,5,4,'s',0,8,NULL,17,0.5,1,0),(8,'Serginho',NULL,NULL,15,7,1,'m',0,7,NULL,18,0,1,0),(9,'Felipe Paixão',NULL,NULL,20,2,1,'m',0,2,NULL,15.5,0,1,0),(10,'Gustavo Santiago',NULL,NULL,18,4,1,'m',0,4,NULL,3,0,1,0),(11,'Tafarel',NULL,NULL,11,11,3,'m',0,11,NULL,19,0.5,1,0),(12,'Perdigão',NULL,NULL,16,6,4,'s',0,9,NULL,17,0.5,1,0),(13,'Maninho',NULL,NULL,16,6,1,'m',0,6,NULL,17,0,1,0),(14,'André',NULL,NULL,13,9,0,'d',0,8,NULL,18,0,1,0),(15,'Dalvir',NULL,NULL,18,4,1,'m',0,4,NULL,16,0,1,0),(16,'Camilo',NULL,NULL,18,4,1,'m',0,4,NULL,6,0,1,0),(17,'Maurício',NULL,NULL,15,7,1,'m',0,7,NULL,12,0,1,0),(18,'Paulinho',NULL,NULL,19,3,1,'m',0,3,NULL,11.5,0,1,0),(19,'Diomar',NULL,NULL,19,3,3,'s',0,5,NULL,16,0.5,1,0),(20,'Zé',NULL,NULL,19,3,1,'m',0,3,NULL,15.5,0,1,0),(21,'Alemão',NULL,NULL,15,7,1,'m',0,7,NULL,17,0,1,0),(22,'Didi',NULL,NULL,17,5,1,'m',0,5,NULL,8,0,1,0),(23,'Xande',NULL,NULL,12,10,0,'d',0,9,NULL,18,0,0,0),(24,'Chiquinho',NULL,NULL,16,6,1,'m',0,6,NULL,17,0,1,0),(25,'Fábio Macedo',NULL,NULL,0,15,0,'d',0,13,NULL,24,0,0,0),(26,'Fábio',NULL,NULL,13,9,1,'m',0,9,NULL,17.5,0,1,0),(27,'Mano',NULL,NULL,28,1,4,'m',0,1,'Líder',-4.5,0.5,1,0),(28,'Pancada Boxer',NULL,NULL,9,13,0,'d',0,10,'Lanterna',0,0,1,0),(29,'Edson',NULL,NULL,18,4,1,'m',0,4,NULL,0,0,1,0),(30,'Ailton',NULL,NULL,15,7,0,'d',0,6,NULL,17,0,1,0),(31,'Lucas Mazin',NULL,NULL,17,5,1,'m',0,5,NULL,12,0,1,0),(32,'Gabriel Dornelles',NULL,NULL,19,3,1,'m',0,3,NULL,15.5,0,1,0),(33,'Juliano Tondim',NULL,NULL,18,4,4,'s',0,7,NULL,11.5,0.5,1,0),(34,'Jonas',NULL,NULL,14,8,2,'s',0,9,NULL,17.5,0,1,0),(35,'Chico',NULL,NULL,9,13,1,'d',0,11,'Lanterna',19.5,0,1,0),(36,'Yuri Ismael',NULL,NULL,10,12,1,'d',0,10,NULL,17,0,1,0),(37,'Rafael',NULL,NULL,4,14,0,'d',0,12,NULL,22,0,0,0),(38,'Ederson',NULL,NULL,0,15,0,'d',0,13,NULL,24,0,0,0);
 /*!40000 ALTER TABLE `jogadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ CREATE TABLE `pagamentos` (
   PRIMARY KEY (`id_pagamento`),
   KEY `fk_pagamentos_jogadores` (`id_jogador`),
   CONSTRAINT `fk_pagamentos_jogadores` FOREIGN KEY (`id_jogador`) REFERENCES `jogadores` (`id_jogadores`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,6 +109,7 @@ CREATE TABLE `pagamentos` (
 
 LOCK TABLES `pagamentos` WRITE;
 /*!40000 ALTER TABLE `pagamentos` DISABLE KEYS */;
+INSERT INTO `pagamentos` VALUES (1,5,'2026-02-27','23:57:18',31),(2,5,'2026-02-27','23:57:30',17),(3,6,'2026-02-27','23:57:47',4),(4,4,'2026-02-27','23:58:26',1),(5,5,'2026-02-27','23:58:26',3),(6,6,'2026-02-27','23:58:26',2),(7,10,'2026-02-27','23:58:42',10),(8,16.5,'2026-02-27','23:59:04',29),(9,3,'2026-02-27','23:59:26',10),(10,5,'2026-02-28','00:02:45',2),(11,5,'2026-02-28','00:07:54',33),(12,7,'2026-02-28','00:08:27',1),(13,8,'2026-02-28','00:08:27',3),(14,9,'2026-02-28','00:08:27',22),(15,10,'2026-02-28','00:08:27',2),(16,12,'2026-02-28','00:08:47',27),(17,20,'2026-02-28','00:08:47',28),(18,5,'2026-02-28','00:09:02',27),(19,4,'2026-02-28','00:11:36',18),(20,10,'2026-02-28','00:11:36',16),(21,5.5,'2026-02-28','00:11:36',1);
 /*!40000 ALTER TABLE `pagamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,4 +156,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-21  4:35:26
+-- Dump completed on 2026-02-28  0:11:36
