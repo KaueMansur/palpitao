@@ -61,6 +61,14 @@ class Jogador
         );
     }
 
+    function getAllUsersActives() {
+        $db = new Database();
+
+        return $db->select(
+            "SELECT * FROM jogadores WHERE status = 1 ORDER BY pontos DESC, nome ASC"
+        );
+    }
+
     function getAllPlayers()
     {
         $db = new Database();
@@ -70,7 +78,8 @@ class Jogador
         );
     }
 
-    function getJogadoresQuePagaramTaxa(){
+    function getJogadoresQuePagaramTaxa()
+    {
         $db = new Database();
 
         return $db->select(
